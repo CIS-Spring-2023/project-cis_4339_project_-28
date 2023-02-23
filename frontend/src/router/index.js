@@ -1,3 +1,4 @@
+import { helperNameMap } from '@vue/compiler-core'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // make all paths and names lowercase for consistency
@@ -39,6 +40,13 @@ const routes = [
     name: 'eventdetails',
     props: true,
     component: () => import('../components/eventDetails.vue')
+  },
+  // route for addService Form
+  {
+    path: '/addService',
+    name: 'addService',
+    props: true,
+    component: () => import('../components/addService.vue')
   }
 ]
 const router = createRouter({
