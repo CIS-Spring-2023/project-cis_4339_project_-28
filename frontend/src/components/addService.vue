@@ -10,19 +10,12 @@ export default {
   },
   data() {
     return {
-      // removed unnecessary extra array to track services
-      event: {
+      // NB: Set Service to Active by default during service creation 
+      // & when deleting, we will just set it to "Inactive", i.e. logical delete
+      service: {
         name: '',
-        services: [],
-        date: '',
-        address: {
-          line1: '',
-          line2: '',
-          city: '',
-          county: '',
-          zip: ''
-        },
-        description: ''
+        description: '',
+        status: 'Active'
       }
     }
   },
@@ -61,7 +54,7 @@ export default {
       <h1
         class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
       >
-        Create New Service
+        Create a service
       </h1>
     </div>
     <div class="px-10 py-20">
@@ -93,10 +86,7 @@ export default {
                 </p>
               </span>
             </label>
-          </div>
-
-          <!-- form field for service description-->
-          <div class="flex flex-col">
+            <!-- form field for service description-->
             <label class="block">
               <span class="text-gray-700">Description</span>
               <textarea
@@ -106,8 +96,8 @@ export default {
             </label>
           </div>
 
-          <div></div>
         </div>
+        <!-- form button "Add New Service" to submit data-->
         <div class="flex justify-between mt-10 mr-20">
           <button class="bg-red-700 text-white rounded" type="submit">
             Add New Service

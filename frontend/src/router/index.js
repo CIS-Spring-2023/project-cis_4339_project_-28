@@ -41,7 +41,7 @@ const routes = [
     props: true,
     component: () => import('../components/eventDetails.vue')
   },
-  // route for addService Form
+  // add route for addService Form
   {
     path: '/addService',
     name: 'addService',
