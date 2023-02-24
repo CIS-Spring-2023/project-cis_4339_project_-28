@@ -18,3 +18,23 @@ VITE_ROOT_API is the URL for the backend API, either on localhost or in the clou
 ### Compiles and hot-reloads for development
 
     npm run dev
+
+
+### @wakindo - Add my frontend references here
+- Remember to update nav menu items in "App.vue:
+**********************************************************************************
+
+
+
+
+*********************************************************************************
+NB: Make sure I am on the right folder before executing:
+- Project setup above i.e. "cd frontend" ,  "npm install" and then "npm run dev"
+- after above verif, I can run "npm run dev" after code to see changes
+- DO NOT FORGET to remove nav menu item "add service" from main MENU on the left
+
+### @wakindo - ToDo List
+- Think about navigation schema with teammate on Sunday
+- Have my viewpoint ready
+- * Continue with "add service" form and see how it should go with Prof. Lindner
+- last commit her 

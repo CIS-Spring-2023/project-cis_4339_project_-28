@@ -76,6 +76,7 @@ export default {
                 Find Event
               </router-link>
             </li>
+            <!--@wakindo -->
             <!-- menu item to add a service but I will change it later to listService
              so we can list services / double click to update / click on btnAddNewService 
              to get to the AddService Form -->
@@ -89,6 +90,20 @@ export default {
                 Add Service
               </router-link>
             </li>
+            <!--@wakindo -->
+            <!-- Try Listing of Service menu item here
+            might need to implement search by service name later --> 
+            <li>
+              <router-link to="/listServices">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >search</span
+                >
+                Services
+              </router-link>
+            </li>
+
           </ul>
         </nav>
       </header>

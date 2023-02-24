@@ -41,6 +41,15 @@ const routes = [
     props: true,
     component: () => import('../components/eventDetails.vue')
   },
+  {
+    //@wakindo
+    // add route for listServices Form
+    path: '/listServices',
+    name: 'listServices',
+    props: true,
+    component: () => import('../components/listServices.vue')
+  },
+  //@wakindo
   // add route for addService Form
   {
     path: '/addService',
