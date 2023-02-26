@@ -26,10 +26,12 @@ export default {
       // If no errors found. isFormCorrect = True then the form is submitted
       if (isFormCorrect) {
         axios
-          .post(`${apiURL}/services`, this.service)  //add the service to the DB
+          //add the service to the DB
+          .post(`${apiURL}/services`, this.service)
           .then(() => {
             alert('Service has been added.')
-            this.$router.push({ name: 'listServices' }) //reroute to the list of services
+            //reroute to the list of services i.e., listServices.vue page
+            this.$router.push({ name: 'listServices' }) 
           })
           .catch((error) => {
             console.log(error)
@@ -37,7 +39,7 @@ export default {
       }
     }
   },
-  // sets validations for the various data properties
+  // sets validations for the various data properties - no need for Service Status
   validations() {
     return {
       service: {
