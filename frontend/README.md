@@ -21,9 +21,14 @@ VITE_ROOT_API is the URL for the backend API, either on localhost or in the clou
 
 
 ### @wakindo - Add my frontend references here
-- Remember to update nav menu items in "App.vue:
 **********************************************************************************
-
+-List my references here as I go thru the code
+1) Dr Lindner CIS 4339 Lectures and in class source code samples
+2) Front-End Development Projects with Vue.js" by Raymond Camden,
+Hugo Di Francesco, Clifford Gurney, Philip Kirkbride and Maya
+Shavin, Packt Publishing (November, 2020)
+3) https://www.geeksforgeeks.org/
+4) https://v2.vuejs.org/
 
 
 
@@ -31,8 +36,9 @@ VITE_ROOT_API is the URL for the backend API, either on localhost or in the clou
 NB: Make sure I am on the right folder before executing:
 - Project setup above i.e. "cd frontend" ,  "npm install" and then "npm run dev"
 - after above verif, I can run "npm run dev" after code to see changes
-- DO NOT FORGET to remove nav menu item "add service" from main MENU on the left
-
+- DO NOT FORGET to:
+    * remove nav menu item "add service" from main MENU on the left
+    * update nav menu items in "App.vue" everytime I add a new feature
 ### @wakindo - ToDo List
 - Think about navigation schema with teammate on Sunday
 - Have my viewpoint ready
