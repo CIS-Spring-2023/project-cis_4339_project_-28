@@ -32,14 +32,9 @@
               @click.prevent="activeStatus(service.id)"
               class="bg-red-700 mr-1 text-white rounded"
             >
-              Activate
+              Toggle Status
             </button>
-            <button
-              @click.prevent="activeStatus(service.id)"
-              class="bg-red-700 mr-1 text-white rounded"
-            >
-              Deactivate
-            </button>
+
             <button
               @click.prevent="deleteItem(service.id)"
               class="bg-red-700 mr-1 text-white rounded"
@@ -167,6 +162,7 @@ export default {
         description: this.description
       })
       localStorage.setItem('services', JSON.stringify(this.servicesData))
+      // reset the input fields to their initial values
       this.name = ''
       this.status = ''
       this.description = ''
@@ -177,7 +173,7 @@ export default {
       } else {
         this.serviceList = JSON.parse(localStorage.getItem('services'))
       }
-
+//seeting vaule of things to the property
       this.name = this.serviceList[serviceID].name
       this.status = this.serviceList[serviceID].status
       this.description = this.serviceList[serviceID].description
@@ -216,11 +212,12 @@ export default {
       }
       // log to console
       console.log(this.serviceList)
-      if (this.serviceList[serviceID].status === 'active') {
-        this.serviceList[serviceID].status = 'inactive'
-      } else {
-        this.serviceList[serviceID].status = 'active'
-      }
+
+      // toggle the status
+      const currentStatus = this.serviceList[serviceID].status
+      this.serviceList[serviceID].status =
+        currentStatus === 'active' ? 'inactive' : 'active'
+
       localStorage.setItem('services', JSON.stringify(this.serviceList))
       location.reload()
     }
@@ -237,6 +234,7 @@ export default {
     location.reload()
   },
   validations: {
+    //making the name and status required with the validation
     name: { required },
     status: { required }
   }
