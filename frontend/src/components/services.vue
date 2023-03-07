@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="title">
     <div><h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">List of Services</h1></div>
-    <table>
-      <thead>
+    <table class="table table-striped">
+      <thead class="table-dark">
         <tr>
-          <th class="px-10 py-20">Service Name</th>
-          <th class="px-10 py-20">Description</th>
-          <th class="px-10 py-20">Status</th>
-          <th class="px-10 py-20">Action</th>
+          <th class="px-10">Service Name</th>
+          <th class="px-10">Description</th>
+          <th class="px-10">Status</th>
+          <th class="px-10">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -18,8 +18,10 @@
           <td>
             <button @click.prevent="updateItem(service.id)"
             class="bg-red-700 mr-1 text-white rounded">Edit</button>
-            <button class="bg-red-700 mr-1 text-white rounded">Activate</button>
-            <button class="bg-red-700 mr-1 text-white rounded">Deactivate</button>
+            <button @click.prevent="activeStatus(service.id)"
+            class="bg-red-700 mr-1 text-white rounded">Activate</button>
+            <button @click.prevent="activeStatus(service.id)"
+            class="bg-red-700 mr-1 text-white rounded">Deactivate</button>
             <button @click.prevent="deleteItem(service.id)"
             class="bg-red-700 mr-1 text-white rounded">Delete</button>
           </td>
@@ -28,14 +30,14 @@
     </table>
   </div>
  
-  <!-- Lior makes a new service-->
+  <!-- Lior - makes a new service-->
   <div>
     <form @submit.prevent="addItem">
-      <div>
-        <label>
-          <span>Service Name</span>
-          <span>*</span>
-          <input type="text" v-model="name" required />
+      <div class="flex flex-col">
+        <label class="block">
+          <span class="text-gray-700">Service Name</span>
+          <span style="color: #ff0000">*</span>
+          <input class="w-80 rounded-md border-gray-300" type="text" v-model="name" required />
         </label>
       </div>
 
@@ -77,15 +79,15 @@
       <div>
         <label>
           <span>Description</span>
-          <textarea v-model="description" rows="1"></textarea>
+          <textarea class="w-80 rounded-md border-gray-300" v-model="description" rows="1"></textarea>
         </label>
       </div>
       <div>
         <div></div>
-        <button class="btn btn-success" type="submit">Add Service</button>
+        <button class="bg-red-700 mr-1 text-white rounded" type="submit">Add Service</button>
         <!-- need to add styling to buttons will do later -->
         <button 
-          class="btn btn-success" v-on:click="sendUpdatedItem" type="button">
+          class="bg-red-700 mr-1 text-white rounded" v-on:click="sendUpdatedItem" type="button">
           Update
         </button>
       </div>
@@ -173,6 +175,23 @@ export default {
         location.reload()
       }
     },
+    activeStatus(serviceID) {
+      if (localStorage.getItem('services') == null) {
+        this.listOfServices = []
+      } else {
+        this.listOfServices = JSON.parse(localStorage.getItem('services'))
+      }
+      // this.$router.push({ name: 'updateservice', params: { id: serviceID } })
+      console.log(this.listOfServices)
+      if (this.listOfServices[serviceID].status === 'active') {
+        this.listOfServices[serviceID].status = 'inactive'
+      } else {
+        this.listOfServices[serviceID].status = 'active'
+      }
+
+      localStorage.setItem('services', JSON.stringify(this.listOfServices))
+      location.reload()
+    },
   },
   sendUpdatedItem() {
       this.listOfServices.id = this.id
@@ -195,3 +214,32 @@ export default {
   }
 }
 </script>
+
+<style>
+.title {
+  padding-bottom: 50px;
+}
+
+.row.justify-content-center {
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.btn.btn-danger.mx-2 {
+  background-color: #c8102e;
+}
+
+.btn.btn-danger.mx-2:hover {
+  opacity: 0.5;
+}
+
+.btn.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn.btn-success:hover {
+  opacity: 0.5;
+}
+</style>
