@@ -44,3 +44,14 @@ NB: Make sure I am on the right folder before executing:
 - Have my viewpoint ready
 - * Continue with "add service" form and see how it should go with Prof. Lindner
 - last commit for today: 20230224_0400
+
+
+### Lior - Services Documentation 
+Services tab on the sidebar will link you to the Services tab. Inside of the services tab there is a textbox where you enter the name of the service, set the status of the service, and add a description.
+Once data is inputed select the "Add Service" Button and it will store the data in the table above.
+The entry in the table has 3 buttons: "Edit", "Change Status", and "Delete"
+- Edit: This will place the data into the text boxes allowing for the user to edit. Click the "Update" button to save the changes.
+- Change Status: This will serve as a quick toggle to make a service "Active" or "Inactive".
+- Delete: Completely deletes the service.
+
+
