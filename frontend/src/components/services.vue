@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div><h1>List of Services</h1></div>
+    <div><h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">List of Services</h1></div>
     <table>
       <thead>
         <tr>
-          <th>Service Name</th>
-          <th>Description</th>
-          <th>Status</th>
-          <th>Action</th>
+          <th class="px-10 py-20">Service Name</th>
+          <th class="px-10 py-20">Description</th>
+          <th class="px-10 py-20">Status</th>
+          <th class="px-10 py-20">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -16,10 +16,11 @@
           <td>{{ service.description }}</td>
           <td>{{ service.status }}</td>
           <td>
-            <button>Edit</button>
-            <button>Activate</button>
-            <button>Deactivate</button>
-            <button>Delete</button>
+            <button @click.prevent="updateItem(service.id)"
+            class="bg-red-700 mr-1 text-white rounded">Edit</button>
+            <button class="bg-red-700 mr-1 text-white rounded">Activate</button>
+            <button class="bg-red-700 mr-1 text-white rounded">Deactivate</button>
+            <button class="bg-red-700 mr-1 text-white rounded">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -49,6 +50,7 @@
               id="active"
               name="status"
               value="active"
+              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
               v-model="status"
             />
             <label for="active">Active</label>
@@ -60,7 +62,7 @@
               name="status"
               value="inactive"
               v-model="status"
-              
+              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
             />
             <label for="active">Inactive</label>
           </div>
@@ -128,6 +130,19 @@ export default {
       this.name = ''
       this.status = ''
       this.description = ''
+    },
+    updateItem(serviceID) {
+      if (localStorage.getItem('services') == null) {
+        this.listOfServices = []
+      } else {
+        this.listOfServices = JSON.parse(localStorage.getItem('services'))
+      }
+      // this.$router.push({ name: 'updateservice', params: { id: serviceID } })
+      this.name = this.listOfServices[serviceID].name
+      this.status = this.listOfServices[serviceID].status
+      this.description = this.listOfServices[serviceID].description
+      this.id = this.listOfServices[serviceID].id
+      console.log(this.id)
     }
   },
   validations: {
