@@ -67,12 +67,9 @@
           />
         </label>
       </div>
-
-      <!-- form field -->
       <div>
         <label>
           <span>Status</span>
-          <span>*</span>
           <div>
             <input
               type="radio"
