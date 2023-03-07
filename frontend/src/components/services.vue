@@ -20,7 +20,8 @@
             class="bg-red-700 mr-1 text-white rounded">Edit</button>
             <button class="bg-red-700 mr-1 text-white rounded">Activate</button>
             <button class="bg-red-700 mr-1 text-white rounded">Deactivate</button>
-            <button class="bg-red-700 mr-1 text-white rounded">Delete</button>
+            <button @click.prevent="deleteItem(service.id)"
+            class="bg-red-700 mr-1 text-white rounded">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -158,6 +159,19 @@ export default {
 
       localStorage.setItem('services', JSON.stringify(this.listOfServices))
       location.reload()
+    },
+    deleteItem(serviceID) {
+      if (localStorage.getItem('services') != null) {
+        // Get the current list of services from localStorage
+        let services = JSON.parse(localStorage.getItem('services'))
+        //  service  delete
+        services.splice(serviceID, 1)
+        localStorage.setItem('services', JSON.stringify(services))
+        // Update listOfServices 
+        this.listOfServices = services
+        //reload app
+        location.reload()
+      }
     },
   },
   sendUpdatedItem() {
