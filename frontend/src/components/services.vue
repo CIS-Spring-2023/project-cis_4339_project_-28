@@ -26,7 +26,7 @@
       </tbody>
     </table>
   </div>
-
+ 
   <!-- Lior makes a new service-->
   <div>
     <form @submit.prevent="addItem">
