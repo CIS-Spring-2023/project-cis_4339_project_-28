@@ -1,6 +1,12 @@
 <template>
   <div class="title">
-    <div><h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">List of Services</h1></div>
+    <div>
+      <h1
+        class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
+      >
+        List of Services
+      </h1>
+    </div>
     <table class="table table-striped">
       <thead class="table-dark">
         <tr>
@@ -16,20 +22,36 @@
           <td>{{ service.description }}</td>
           <td>{{ service.status }}</td>
           <td>
-            <button @click.prevent="updateItem(service.id)"
-            class="bg-red-700 mr-1 text-white rounded">Edit</button>
-            <button @click.prevent="activeStatus(service.id)"
-            class="bg-red-700 mr-1 text-white rounded">Activate</button>
-            <button @click.prevent="activeStatus(service.id)"
-            class="bg-red-700 mr-1 text-white rounded">Deactivate</button>
-            <button @click.prevent="deleteItem(service.id)"
-            class="bg-red-700 mr-1 text-white rounded">Delete</button>
+            <button
+              @click.prevent="updateItem(service.id)"
+              class="bg-red-700 mr-1 text-white rounded"
+            >
+              Edit
+            </button>
+            <button
+              @click.prevent="activeStatus(service.id)"
+              class="bg-red-700 mr-1 text-white rounded"
+            >
+              Activate
+            </button>
+            <button
+              @click.prevent="activeStatus(service.id)"
+              class="bg-red-700 mr-1 text-white rounded"
+            >
+              Deactivate
+            </button>
+            <button
+              @click.prevent="deleteItem(service.id)"
+              class="bg-red-700 mr-1 text-white rounded"
+            >
+              Delete
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
- 
+
   <!-- Lior - makes a new service-->
   <div>
     <form @submit.prevent="addItem">
@@ -37,10 +59,14 @@
         <label class="block">
           <span class="text-gray-700">Service Name</span>
           <span style="color: #ff0000">*</span>
-          <input class="w-80 rounded-md border-gray-300" type="text" v-model="name" required />
+          <input
+            class="w-80 rounded-md border-gray-300"
+            type="text"
+            v-model="name"
+            required
+          />
         </label>
       </div>
-
 
       <!-- form field -->
       <div>
@@ -79,15 +105,24 @@
       <div>
         <label>
           <span>Description</span>
-          <textarea class="w-80 rounded-md border-gray-300" v-model="description" rows="1"></textarea>
+          <textarea
+            class="w-80 rounded-md border-gray-300"
+            v-model="description"
+            rows="1"
+          ></textarea>
         </label>
       </div>
       <div>
         <div></div>
-        <button class="bg-red-700 mr-1 text-white rounded" type="submit">Add Service</button>
+        <button class="bg-red-700 mr-1 text-white rounded" type="submit">
+          Add Service
+        </button>
         <!-- need to add styling to buttons will do later -->
-        <button 
-          class="bg-red-700 mr-1 text-white rounded" v-on:click="sendUpdatedItem" type="button">
+        <button
+          class="bg-red-700 mr-1 text-white rounded"
+          v-on:click="sendUpdatedItem"
+          type="button"
+        >
           Update
         </button>
       </div>
@@ -109,19 +144,20 @@ export default {
       v$: useVuelidate({ $autoDirty: true })
     }
   },
+
+  created() {
+    /* takes data from storage and puts into an array */
+    this.servicesData = JSON.parse(localStorage.getItem('services') || '[]')
+  },
   data() {
     return {
-      listOfServices: [],
+      serviceList: [],
       id: '',
       servicesData: [],
       name: '',
       status: '',
       description: ''
     }
-  },
-  created() {
-    /* takes data from storage and puts into an array */
-    this.servicesData = JSON.parse(localStorage.getItem('services') || '[]')
   },
 
   methods: {
@@ -140,26 +176,26 @@ export default {
     },
     updateItem(serviceID) {
       if (localStorage.getItem('services') == null) {
-        this.listOfServices = []
+        this.serviceList = []
       } else {
-        this.listOfServices = JSON.parse(localStorage.getItem('services'))
+        this.serviceList = JSON.parse(localStorage.getItem('services'))
       }
-      
-      this.name = this.listOfServices[serviceID].name
-      this.status = this.listOfServices[serviceID].status
-      this.description = this.listOfServices[serviceID].description
-      this.id = this.listOfServices[serviceID].id
+
+      this.name = this.serviceList[serviceID].name
+      this.status = this.serviceList[serviceID].status
+      this.description = this.serviceList[serviceID].description
+      this.id = this.serviceList[serviceID].id
       console.log(this.id)
     },
     sendUpdatedItem() {
-      this.listOfServices.id = this.id
-      this.listOfServices[this.id].name = this.name
-      this.listOfServices[this.id].status = this.status
-      this.listOfServices[this.id].description = this.description
+      this.serviceList.id = this.id
+      this.serviceList[this.id].name = this.name
+      this.serviceList[this.id].status = this.status
+      this.serviceList[this.id].description = this.description
 
-      console.log(this.listOfServices)
+      console.log(this.serviceList)
 
-      localStorage.setItem('services', JSON.stringify(this.listOfServices))
+      localStorage.setItem('services', JSON.stringify(this.serviceList))
       location.reload()
     },
     deleteItem(serviceID) {
@@ -169,77 +205,54 @@ export default {
         //  service  delete
         services.splice(serviceID, 1)
         localStorage.setItem('services', JSON.stringify(services))
-        // Update listOfServices 
-        this.listOfServices = services
+        // Update serviceList
+        this.serviceList = services
         //reload app
         location.reload()
       }
     },
     activeStatus(serviceID) {
       if (localStorage.getItem('services') == null) {
-        this.listOfServices = []
+        this.serviceList = []
       } else {
-        this.listOfServices = JSON.parse(localStorage.getItem('services'))
+        this.serviceList = JSON.parse(localStorage.getItem('services'))
       }
-      // this.$router.push({ name: 'updateservice', params: { id: serviceID } })
-      console.log(this.listOfServices)
-      if (this.listOfServices[serviceID].status === 'active') {
-        this.listOfServices[serviceID].status = 'inactive'
+      // log to console
+      console.log(this.serviceList)
+      if (this.serviceList[serviceID].status === 'active') {
+        this.serviceList[serviceID].status = 'inactive'
       } else {
-        this.listOfServices[serviceID].status = 'active'
+        this.serviceList[serviceID].status = 'active'
       }
-
-      localStorage.setItem('services', JSON.stringify(this.listOfServices))
+      localStorage.setItem('services', JSON.stringify(this.serviceList))
       location.reload()
-    },
+    }
   },
   sendUpdatedItem() {
-      this.listOfServices.id = this.id
-      this.listOfServices[this.id].name = this.name
-      this.listOfServices[this.id].status = this.status
-      this.listOfServices[this.id].description = this.description
+    this.serviceList.id = this.id
+    this.serviceList[this.id].name = this.name
+    this.serviceList[this.id].status = this.status
+    this.serviceList[this.id].description = this.description
 
-      console.log(this.listOfServices)
+    console.log(this.serviceList)
 
-      localStorage.setItem('services', JSON.stringify(this.listOfServices))
-      location.reload()
-    },
+    localStorage.setItem('services', JSON.stringify(this.serviceList))
+    location.reload()
+  },
   validations: {
-    name: {
-      required
-    },
-    status: {
-      required
-    }
+    name: { required },
+    status: { required }
   }
 }
 </script>
 
 <style>
 .title {
-  padding-bottom: 50px;
+  padding-bottom: 30px;
 }
-
 .row.justify-content-center {
-  padding-top: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
-.btn.btn-danger.mx-2 {
-  background-color: #c8102e;
-}
-
-.btn.btn-danger.mx-2:hover {
-  opacity: 0.5;
-}
-
-.btn.btn-success {
-  background-color: #28a745;
-  border-color: #28a745;
-}
-
-.btn.btn-success:hover {
-  opacity: 0.5;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 </style>
