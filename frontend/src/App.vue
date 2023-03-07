@@ -76,16 +76,7 @@ export default {
                 Find Event
               </router-link>
             </li>
-            <li>
-              <router-link to="/testServices">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >search</span
-                >
-                Services TEST
-              </router-link>
-            </li>
+            <!-- Lior added menu item to manage services all under one tab will have to add styling later but its a good start -->
             <li>
               <router-link to="/services">
                 <span
