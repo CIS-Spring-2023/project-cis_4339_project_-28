@@ -76,6 +76,26 @@ export default {
                 Find Event
               </router-link>
             </li>
+            <li>
+              <router-link to="/testServices">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >search</span
+                >
+                Services TEST
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/services">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >settings</span
+                >
+                Services
+              </router-link>
+            </li>
             <!--@wakindo -->
             <!-- menu item to add a service but I will change it later to listService
              so we can list services / double click to update / click on btnAddNewService 
