@@ -76,13 +76,17 @@
       <div>
         <label>
           <span>Description</span>
-          <textarea v-model="description" rows="2"></textarea>
+          <textarea v-model="description" rows="1"></textarea>
         </label>
       </div>
       <div>
         <div></div>
-        <button type="submit">Add Service</button>
-        
+        <button class="btn btn-success" type="submit">Add Service</button>
+        <!-- need to add styling to buttons will do later -->
+        <button 
+          class="btn btn-success" v-on:click="sendUpdatedItem" type="button">
+          Update
+        </button>
       </div>
     </form>
   </div>
@@ -137,14 +141,36 @@ export default {
       } else {
         this.listOfServices = JSON.parse(localStorage.getItem('services'))
       }
-      // this.$router.push({ name: 'updateservice', params: { id: serviceID } })
+      
       this.name = this.listOfServices[serviceID].name
       this.status = this.listOfServices[serviceID].status
       this.description = this.listOfServices[serviceID].description
       this.id = this.listOfServices[serviceID].id
       console.log(this.id)
-    }
+    },
+    sendUpdatedItem() {
+      this.listOfServices.id = this.id
+      this.listOfServices[this.id].name = this.name
+      this.listOfServices[this.id].status = this.status
+      this.listOfServices[this.id].description = this.description
+
+      console.log(this.listOfServices)
+
+      localStorage.setItem('services', JSON.stringify(this.listOfServices))
+      location.reload()
+    },
   },
+  sendUpdatedItem() {
+      this.listOfServices.id = this.id
+      this.listOfServices[this.id].name = this.name
+      this.listOfServices[this.id].status = this.status
+      this.listOfServices[this.id].description = this.description
+
+      console.log(this.listOfServices)
+
+      localStorage.setItem('services', JSON.stringify(this.listOfServices))
+      location.reload()
+    },
   validations: {
     name: {
       required
