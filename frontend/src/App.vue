@@ -118,7 +118,7 @@ export default {
             <!--@wakindo -->
             <!-- Try Listing of Service menu item here
             might need to implement search by service name later --> 
-            <li>
+            <!-- <li>
               <router-link to="/listServices">
                 <span
                   style="position: relative; top: 6px"
@@ -127,10 +127,30 @@ export default {
                 >
                 Services
               </router-link>
+            </li> -->
+            <li>
+              <router-link to="/createService">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >settings</span
+                >
+                Create Service
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/CreatedServicesList">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >settings</span
+                >
+                Services List
+              </router-link>
             </li>
             <!-- david logout page -->
             <li>
-              <router-link to="/logout">
+              <router-link to="/login">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
