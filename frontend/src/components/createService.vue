@@ -4,7 +4,7 @@
     <h1
       class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
     >
-    {{ titleText }}
+      {{ titleText }}
     </h1>
     <div class="px-10 pt-10"></div>
     <!-- form for the data name,description, status -->
@@ -42,8 +42,8 @@
           class="submit-button bg-red-700 text-white rounded"
           type="submit"
         >
-        <!-- submit button! -->
-        {{ buttonText }}
+          <!-- submit button! -->
+          {{ buttonText }}
         </button>
         <!--- @wakindo: Guys, I just added a Go Back button here so user can go back to list of services when they are done adding new one(s) instead of doing an auto reload -->
         <button
@@ -53,6 +53,7 @@
         >
           Go back
         </button>
+
         <button class="clear-button" type="button" @click="clearForm">
           Clear
         </button>
@@ -62,7 +63,6 @@
     <p v-if="showSuccessMessage" class="success-message">
       Service Successfully Added!
     </p>
-    
   </div>
 </template>
 
