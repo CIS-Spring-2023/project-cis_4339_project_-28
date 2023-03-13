@@ -26,7 +26,7 @@ export default {
         <!-- Navigation bar section starts here -->
         <nav class="mt-10">
           <ul class="flex flex-col gap-4">
-            <!-- login page -->
+            <!-- david login page -->
             <li>
               <router-link to="/login">
                 <span
@@ -125,7 +125,7 @@ export default {
                 Services
               </router-link>
             </li>
-            <!-- logout page -->
+            <!-- david logout page -->
             <li>
               <router-link to="/logout">
                 <span
