@@ -118,7 +118,7 @@ export default {
             <!--@wakindo -->
             <!-- Try Listing of Service menu item here
             might need to implement search by service name later --> 
-            <!-- <li>
+            <li>
               <router-link to="/listServices">
                 <span
                   style="position: relative; top: 6px"
@@ -127,7 +127,7 @@ export default {
                 >
                 Services
               </router-link>
-            </li> -->
+            </li>
             <li>
               <router-link to="/createService">
                 <span
