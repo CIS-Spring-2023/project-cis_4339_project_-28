@@ -132,26 +132,25 @@ const eventDataSchema = new Schema(
 //@wakindo
 //start of Sprint2 needed models
 // collection for services - uncomment when we start the backend and have more clarifications with Prof. Lindner
-/* const serviceDataSchema = new Schema(
+const serviceDataSchema = new Schema(
   {
     _id: { type: String, default: uuid.v1 },
-    serviceName: {
+    name: {
       type: String,
       required: true
     },
-    serviceDescription: {
+    description: {
       type: String
     },
-    serviceStatus: {
+    status: {
       type: String,
       required: true
     }
   },
   {
-    collection: 'service',
-    timestamps: true
+    collection: 'service'
   }
-) */
+)
 // end of Sprint2 needed models
 
 
@@ -160,12 +159,11 @@ const eventDataSchema = new Schema(
 const clients = mongoose.model('client', clientDataSchema)
 const orgs = mongoose.model('org', orgDataSchema)
 const events = mongoose.model('event', eventDataSchema)
-
 //@wakindo
 // double check and uncomment when we reach the backend part of prj
-// const services = mongoose.model('service', serviceDataSchema)
+const services = mongoose.model('service', serviceDataSchema)
 
 // DO NOT FORGET to ADD "services" to module.exports below
 
 // package the models in an object to export
-module.exports = { clients, orgs, events }
+module.exports = { clients, orgs, events, services }
