@@ -12,9 +12,9 @@ export default {
     return {
       // NB: Set Service to Active by default during service creation 
       // & when deleting, we will just set it to "Inactive", i.e. logical delete
-      service: {
-        name: '',
-        description: '',
+      user: {
+        username: '',
+        password: '',
         status: 'Active'
       }
     }
@@ -27,11 +27,11 @@ export default {
       if (isFormCorrect) {
         axios
           //add the service to the DB
-          .post(`${apiURL}/services`, this.service)
+          .post(`${apiURL}/login`, this.user)
           .then(() => {
             alert('Service has been added.')
-            //reroute to the list of services i.e., listServices.vue page
-            this.$router.push({ name: 'listServices' }) 
+            //reroute to the login page i.e., login.vue page
+            this.$router.push({ name: 'login' }) 
           })
           .catch((error) => {
             console.log(error)
@@ -56,7 +56,7 @@ export default {
       <h1
         class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
       >
-        Username
+        Login Page
       </h1>
     </div>
     <div class="px-10 py-20">
@@ -66,22 +66,21 @@ export default {
         <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
         >
-          <h2 class="text-2xl font-bold">Service Details</h2>
 
-          <!-- form field  for service name-->
+          <!-- form field  for user name-->
           <div class="flex flex-col">
             <label class="block">
-              <span class="text-gray-700">Service Name</span>
+              <span class="text-gray-700">Username</span>
               <span style="color: #ff0000">*</span>
               <input
                 type="text"
                 class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                v-model="service.name"
+                v-model="user.name"
               />
-              <span class="text-black" v-if="v$.service.name.$error">
+              <span class="text-black" v-if="v$.user.name.$error">
                 <p
                   class="text-red-700"
-                  v-for="error of v$.service.name.$errors"
+                  v-for="error of v$.user.name.$errors"
                   :key="error.$uid"
                 >
                   {{ error.$message }}!
@@ -91,10 +90,21 @@ export default {
             <!-- form field for service description-->
             <label class="block">
               <span class="text-gray-700">Password</span>
-              <textarea
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                rows="2"
-              ></textarea>
+              <span style="color: #ff0000">*</span>
+              <input
+                type="text"
+                class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                v-model="user.name"
+              />
+              <span class="text-black" v-if="v$.user.name.$error">
+                <p
+                  class="text-red-700"
+                  v-for="error of v$.user.name.$errors"
+                  :key="error.$uid"
+                >
+                  {{ error.$message }}!
+                </p>
+              </span>
             </label>
           </div>
 
@@ -102,7 +112,7 @@ export default {
         <!-- form button "Add New Service" to submit data-->
         <div class="flex justify-between mt-10 mr-20">
           <button class="bg-red-700 text-white rounded" type="submit">
-            Add New Service
+            Login
           </button>
         </div>
       </form>
