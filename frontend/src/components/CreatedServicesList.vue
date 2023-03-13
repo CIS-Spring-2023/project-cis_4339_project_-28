@@ -17,6 +17,7 @@
           <td>{{ service.active ? 'Yes' : 'No' }}</td>
           <td>
             <button @click="editService(index)">Edit</button>
+            <button @click="deleteService(index)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -37,6 +38,12 @@ export default {
         name: 'createService',
         params: { index },
       });
+    },
+    deleteService(index) {
+      let createdServices = JSON.parse(localStorage.getItem('createdServices')) || [];
+      createdServices.splice(index, 1);
+      localStorage.setItem('createdServices', JSON.stringify(createdServices));
+      location.reload(); // reload the page to update the table
     },
   },
 };

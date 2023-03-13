@@ -15,11 +15,11 @@
         <input type="checkbox" v-model="service.active">
       </label>
       <button type="submit">{{ buttonText }}</button>
+      <button type="button" @click="clearForm">Clear</button>
     </form>
-    <p v-if="showUpdateMessage">Entry Updated!</p>
+    <p v-if="showSuccessMessage">Service Successfully Added!</p>
   </div>
 </template>
-
 <script>
 export default {
   props: {
@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       service: this.selectedService || { name: '', description: '', active: true },
-      showUpdateMessage: false,
+      showSuccessMessage: false,
     };
   },
   computed: {
@@ -47,14 +47,19 @@ export default {
         this.showUpdateMessage = true; // set the message to show
       } else {
         createdServices.push(this.service);
+        this.showSuccessMessage = true; // set the success message to show
+        this.service = { name: '', description: '', active: true }; // clear the form
       }
       localStorage.setItem('createdServices', JSON.stringify(createdServices));
       this.$router.push({ name: 'createdServicesList' });
     },
+    clearForm() {
+      this.service = { name: '', description: '', active: true };
+      this.showSuccessMessage = false;
+    },
   },
 };
 </script>
-
 <style>
 label {
   display: block;
