@@ -118,7 +118,7 @@ export default {
             <!--@wakindo -->
             <!-- Try Listing of Service menu item here
             might need to implement search by service name later --> 
-            <li>
+            <!-- <li>
               <router-link to="/listServices">
                 <span
                   style="position: relative; top: 6px"
@@ -127,8 +127,9 @@ export default {
                 >
                 Services
               </router-link>
-            </li>
-            <li>
+            </li> -->
+            <!-- We do not need this menu: just added a button below the list of services table to redirect to the createService.vu-->
+            <!-- <li>
               <router-link to="/createService">
                 <span
                   style="position: relative; top: 6px"
@@ -137,7 +138,7 @@ export default {
                 >
                 Create Service
               </router-link>
-            </li>
+            </li> -->
             <li>
               <router-link to="/CreatedServicesList">
                 <span
@@ -145,7 +146,7 @@ export default {
                   class="material-icons"
                   >settings</span
                 >
-                Services List
+                Services
               </router-link>
             </li>
             <!-- david logout page -->

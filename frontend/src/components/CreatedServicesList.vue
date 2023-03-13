@@ -3,9 +3,9 @@
     <h1
       class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
     >
-      Created Services
+      List of Services
     </h1>
-    <!-- guys its a sick table that takes the data from local storage and showcases it  -->
+    <!-- guys its a sick table that takes the data from local storage and showcases it : OK we will just go with that option Lior (we are running out of time here-->
     <!-- When backend is implemented the data will pull from the database not locally -->
     <div class="px-10 pt-10"></div>
     <table class="min-w-full shadow-md rounded">
@@ -34,7 +34,7 @@
       You did not need to recreate a list of services, create service (which I already), just Update and Delete.
       So, I am updating them since we are running out of time your vues my redirecting where needed to make it simple like we talked about
     -->
-    <!-- form button "Add New Service" to open addService.vue -->
+    <!-- form button "Add New Service" to open Lior's CreateService.vue -->
     <div class="flex justify-between">
       <button class="bg-red-700 text-white rounded" type="submit">
         <!-- your createService is the same as the addService I did but redirecting to your vue so I won't have to change you code a lot -->

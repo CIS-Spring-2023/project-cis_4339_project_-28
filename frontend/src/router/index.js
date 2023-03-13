@@ -54,7 +54,7 @@ const routes = [
     path: '/listServices',
     name: 'listServices',
     props: true,
-    component: () => import('../components/listServices.vue')
+    component: () => import('../components/listServices_NO_NEED_Delete_After_Routing Lior vues.vue')
   },
   //@wakindo
   // add route for addService Form
