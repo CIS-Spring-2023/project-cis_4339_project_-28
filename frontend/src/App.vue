@@ -26,6 +26,17 @@ export default {
         <!-- Navigation bar section starts here -->
         <nav class="mt-10">
           <ul class="flex flex-col gap-4">
+            <!-- login page -->
+            <li>
+              <router-link to="/login">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >login</span
+                >
+                Login
+              </router-link>
+            </li>
             <li>
               <router-link to="/">
                 <span
@@ -112,6 +123,17 @@ export default {
                   >search</span
                 >
                 Services
+              </router-link>
+            </li>
+            <!-- logout page -->
+            <li>
+              <router-link to="/logout">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >logout</span
+                >
+                Logout
               </router-link>
             </li>
 
