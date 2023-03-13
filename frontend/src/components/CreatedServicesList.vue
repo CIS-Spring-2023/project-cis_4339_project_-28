@@ -5,6 +5,8 @@
     >
       Created Services
     </h1>
+    <!-- guys its a sick table that takes the data from local storage and showcases it  -->
+    <!-- When backend is implemented the data will pull from the database not locally -->
     <div class="px-10 pt-10"></div>
     <table class="min-w-full shadow-md rounded">
       <thead>
@@ -21,19 +23,12 @@
           <td class="p-4 text-center">{{ service.description }}</td>
           <td class="p-4 text-center">{{ service.active ? 'Yes' : 'No' }}</td>
           <td class="p-4 text-center flex justify-center">
-            <button
-              class="bg-gray-500 text-white rounded mr-2"
-              @click="editService(index)"
-            >
-              Edit
-            </button>
-            <button
-              class="bg-red-700 text-white rounded"
-              @click="deleteService(index)"
-            >
-              Delete
-            </button>
-          </td>
+  <button class="bg-gray-500 text-white rounded mr-2" @click="editService(index)">Edit</button>
+  <button class="bg-red-700 text-white rounded" @click="deleteService(index)">Delete</button>
+</td>
+
+
+
         </tr>
       </tbody>
     </table>

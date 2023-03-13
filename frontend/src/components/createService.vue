@@ -1,11 +1,13 @@
 <template>
   <div class="create-service">
+    <!-- header thing with styling to match other parts -->
     <h1
       class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
     >
       Create Service
     </h1>
     <div class="px-10 pt-10"></div>
+    <!-- form for the data name,description, status -->
     <form @submit.prevent="submitForm">
       <label class="text-2xl font-bold">
         Service Name:
@@ -15,6 +17,7 @@
           v-model="service.name"
           required
         />
+        <!-- each part is required  -->
       </label>
       <label class="text-2xl font-bold">
         Description:
@@ -39,11 +42,13 @@
           class="submit-button bg-red-700 text-white rounded"
           type="submit"
         >
+        <!-- submit button! -->
           {{ buttonText }}
         </button>
         <button class="clear-button" type="button" @click="clearForm">
           Clear
         </button>
+        <!-- a button to clear incase the person is to lazy to hit backspace -->
       </div>
     </form>
     <p v-if="showSuccessMessage" class="success-message">
@@ -59,6 +64,7 @@ export default {
       type: Object,
       default: null
     }
+    // prop to get the data to the list vue table thingie
   },
   data() {
     return {
@@ -75,10 +81,14 @@ export default {
       return this.selectedService ? 'Update Entry' : 'Create Service'
     }
   },
+
+  // is it an update or creation?
   methods: {
+    // what to do it u submit
     submitForm() {
       let createdServices =
         JSON.parse(localStorage.getItem('createdServices')) || []
+        // put in localstorage createdServices
       if (this.selectedService) {
         createdServices[this.$route.params.index] = this.service
         this.showUpdateMessage = true // set the message to show
@@ -88,7 +98,7 @@ export default {
         this.service = { name: '', description: '', active: true } // clear the form
       }
       localStorage.setItem('createdServices', JSON.stringify(createdServices))
-      this.$router.push({ name: 'createdServicesList' })
+      this.$router.push({ name: 'CreatedServicesList' }) // redirect to the "createdServicesList" component
     },
     clearForm() {
       this.service = { name: '', description: '', active: true }
