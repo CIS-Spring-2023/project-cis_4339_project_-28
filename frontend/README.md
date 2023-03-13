@@ -50,9 +50,12 @@ NB: Make sure I am on the right folder before executing:
 - Hello
 
 ### Lior - Services Documentation 
-Services tab on the sidebar will link you to the Services tab. Inside of the services tab there is a textbox where you enter the name of the service, set the status of the service, and add a description.
-Once data is inputed select the "Add Service" Button and it will store the data in the table above.
-The entry in the table has 3 buttons: "Edit", "Change Status", and "Delete"
+**Create Services** 
+On the sidebar will link you to the Create Services tab. Inside of the Create Services tab there is a textbox where you enter the name of the service, add a description, and set the status of the service.
+Once data is inputed select the "Create Service" Button and it will store the data.
+
+**Services List** 
+The Services List tab will show a table with all current services. You can edit or delete services by clicking the buttons.
 - **Edit:** This will place the data into the text boxes allowing for the user to edit. Click the "Update" button to save the changes.
 - **Change Status:** This will serve as a quick toggle to make a service "Active" or "Inactive".
 - **Delete:** Completely deletes the service.
