@@ -150,7 +150,7 @@ export default {
             </li>
             <!-- david logout page -->
             <li>
-              <router-link to="/">
+              <router-link to="/login">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"

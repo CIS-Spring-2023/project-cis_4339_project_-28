@@ -1,121 +1,129 @@
-<script>
-import useVuelidate from '@vuelidate/core'
-import { required } from '@vuelidate/validators'
-import axios from 'axios'
-const apiURL = import.meta.env.VITE_ROOT_API
-
-export default {
-  setup() {
-    return { v$: useVuelidate({ $autoDirty: true }) }
-  },
-  data() {
-    return {
-      // NB: Set Service to Active by default during service creation 
-      // & when deleting, we will just set it to "Inactive", i.e. logical delete
-      user: {
-        username: '',
-        password: '',
-        status: 'Active'
-      }
-    }
-  },
-  methods: {
-    async handleSubmitForm() {
-      // Checks to see if there are any errors in validation
-      const isFormCorrect = await this.v$.$validate()
-      // If no errors found. isFormCorrect = True then the form is submitted
-      if (isFormCorrect) {
-        axios
-          //add the service to the DB
-          .post(`${apiURL}/login`, this.user)
-          .then(() => {
-            alert('Service has been added.')
-            //reroute to the login page i.e., login.vue page
-            this.$router.push({ name: 'login' }) 
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-      }
-    }
-  },
-  // sets validations for the various data properties - no need for Service Status
-  validations() {
-    return {
-      user: {
-        username: { required },
-        password: { required }
-      }
-    }
-  }
-}
-</script>
 <template>
-  <main>
-    <div>
+    <div class="create-service">
       <h1
         class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
       >
-        Login Page
+        Login Information
       </h1>
-    </div>
-    <div class="px-10 py-20">
-      <!-- @submit.prevent stops the submit event from reloading the page-->
-      <form @submit.prevent="handleSubmitForm">
-        <!-- grid container -->
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
-        >
-
-          <!-- form field  for user name-->
-          <div class="flex flex-col">
-            <label class="block">
-              <span class="text-gray-700">Username</span>
-              <span style="color: #ff0000">*</span>
-              <input
-                type="text"
-                class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                v-model="user.name"
-              />
-              <span class="text-black" v-if="v$.user.name.$error">
-                <p
-                  class="text-red-700"
-                  v-for="error of v$.user.name.$errors"
-                  :key="error.$uid"
-                >
-                  {{ error.$message }}!
-                </p>
-              </span>
-            </label>
-            <!-- form field for service description-->
-            <label class="block">
-              <span class="text-gray-700">Password</span>
-              <span style="color: #ff0000">*</span>
-              <input
-                type="text"
-                class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                v-model="user.name"
-              />
-              <span class="text-black" v-if="v$.user.name.$error">
-                <p
-                  class="text-red-700"
-                  v-for="error of v$.user.name.$errors"
-                  :key="error.$uid"
-                >
-                  {{ error.$message }}!
-                </p>
-              </span>
-            </label>
-          </div>
-
-        </div>
-        <!-- form button "Add New Service" to submit data-->
-        <div class="flex justify-between mt-10 mr-20">
-          <button class="bg-red-700 text-white rounded" type="submit">
-            Login
+      <div class="px-10 pt-10"></div>
+      <form @submit.prevent="submitForm">
+        <label class="text-2xl font-bold">
+          Username:
+          <input
+            class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            type="text"
+            v-model="service.name"
+            required
+          />
+        </label>
+        <label class="text-2xl font-bold">
+          Password:
+          <input
+            class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            type="text"
+            v-model="service.description"
+            required
+          />
+        </label>
+        <div class="button-group">
+          <button
+            class="submit-button bg-red-700 text-white rounded"
+            type="submit"
+          >
+            {{ buttonText }}
+          </button>
+          <button class="clear-button" type="button" @click="clearForm">
+            Clear
           </button>
         </div>
       </form>
+      <p v-if="showSuccessMessage" class="success-message">
+        Login successful!
+      </p>
     </div>
-  </main>
-</template>
+  </template>
+  
+  <script>
+  export default {
+    props: {
+      selectedService: {
+        type: Object,
+        default: null
+      }
+    },
+    data() {
+      return {
+        service: this.selectedService || {
+          name: '',
+          description: '',
+          active: true
+        },
+        showSuccessMessage: false
+      }
+    },
+    computed: {
+      buttonText() {
+        return this.selectedService ? 'Update Entry' : 'Submit Login'
+      }
+    },
+    methods: {
+      submitForm() {
+        let createdServices =
+          JSON.parse(localStorage.getItem('createdServices')) || []
+        if (this.selectedService) {
+          createdServices[this.$route.params.index] = this.service
+          this.showUpdateMessage = true // set the message to show
+        } else {
+          createdServices.push(this.service)
+          this.showSuccessMessage = true // set the success message to show
+          this.service = { name: '', description: '', active: true } // clear the form
+        }
+        localStorage.setItem('createdServices', JSON.stringify(createdServices))
+        this.$router.push({ name: 'createdServicesList' })
+      },
+      clearForm() {
+        this.service = { name: '', description: '', active: true }
+        this.showSuccessMessage = false
+      }
+    }
+  }
+  </script>
+  
+  <style>
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .create-service {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .submit-button {
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .clear-button {
+    background-color: #ccc;
+    color: #000;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .success-message {
+    color: green;
+    margin-top: 10px;
+  }
+  </style>
