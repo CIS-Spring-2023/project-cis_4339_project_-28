@@ -77,6 +77,20 @@ const routes = [
     name: 'logout',
     props: true,
     component: () => import('../components/Logout.vue')
+  },
+  {
+    path: '/CreatedServicesList',
+    name: 'CreatedServicesList',
+    props: true,
+    component: () => import('../components/CreatedServicesList.vue')
+  },
+  {
+    path: '/createService/:index?',
+    name: 'createService',
+    props: (route) => ({
+      selectedService: route.params.index ? JSON.parse(localStorage.getItem('createdServices'))[route.params.index] : null
+    }),
+    component: () => import('../components/createService.vue')
   }
 ]
 const router = createRouter({
