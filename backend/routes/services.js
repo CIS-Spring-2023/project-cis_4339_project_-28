@@ -43,7 +43,7 @@ router.get('/id/:id', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const newService = req.body
   newService.orgs = [org]
-  Services.create(newService, (error, data) => {
+  services.create(newService, (error, data) => {
     if (error) {
       return next(error)
     } else {

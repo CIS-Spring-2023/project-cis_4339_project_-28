@@ -23,15 +23,30 @@
           <td class="p-4 text-center">{{ service.description }}</td>
           <td class="p-4 text-center">{{ service.active ? 'Yes' : 'No' }}</td>
           <td class="p-4 text-center flex justify-center">
-  <button class="bg-gray-500 text-white rounded mr-2" @click="editService(index)">Edit</button>
-  <button class="bg-red-700 text-white rounded" @click="deleteService(index)">Delete</button>
-</td>
-
-
-
+            <button class="bg-gray-500 text-white rounded mr-2" @click="editService(index)">Edit</button>
+            <button class="bg-red-700 text-white rounded" @click="deleteService(index)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
+    <br>
+    <!-- @wakindo 
+      You did not need to recreate a list of services, create service (which I already), just Update and Delete.
+      So, I am updating them since we are running out of time your vues my redirecting where needed to make it simple like we talked about
+    -->
+    <!-- form button "Add New Service" to open addService.vue -->
+    <div class="flex justify-between">
+      <button class="bg-red-700 text-white rounded" type="submit">
+        <!-- your createService is the same as the addService I did but redirecting to your vue so I won't have to change you code a lot -->
+        <router-link to="/createService">
+          <span
+            style="position: relative; top: 6px"
+            class="material-icons"
+            ></span
+          >Add New Service
+        </router-link>
+      </button>
+    </div>      
   </div>
 </template>
 <script>
