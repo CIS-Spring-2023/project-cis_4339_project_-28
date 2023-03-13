@@ -1,0 +1,253 @@
+<template>
+  <div class="title">
+    <div>
+      <h1
+        class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
+      >
+        List of Services
+      </h1>
+    </div>
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th class="px-10">Service Name</th>
+          <th class="px-10">Description</th>
+          <th class="px-10">Status</th>
+          <th class="px-10">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="service in servicesData" :key="service.id">
+          <td>{{ service.name }}</td>
+          <td>{{ service.description }}</td>
+          <td>{{ service.status }}</td>
+          <td>
+            <button
+              @click.prevent="updateItem(service.id)"
+              class="bg-red-700 mr-1 text-white rounded"
+            >
+              Edit
+            </button>
+            <button
+              @click.prevent="activeStatus(service.id)"
+              class="bg-red-700 mr-1 text-white rounded"
+            >
+              Toggle Status
+            </button>
+
+            <button
+              @click.prevent="deleteItem(service.id)"
+              class="bg-red-700 mr-1 text-white rounded"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Lior - makes a new service-->
+  <div>
+    <form @submit.prevent="addItem">
+      <div class="flex flex-col">
+        <label class="block">
+          <span class="text-gray-700">Service Name</span>
+          <span style="color: #ff0000">*</span>
+          <input
+            class="w-80 rounded-md border-gray-300"
+            type="text"
+            v-model="name"
+            required
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          <span>Status</span>
+          <div>
+            <input
+              type="radio"
+              id="active"
+              name="status"
+              value="active"
+              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
+              v-model="status"
+            />
+            <label for="active">Active</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="inactive"
+              name="status"
+              value="inactive"
+              v-model="status"
+              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
+            />
+            <label for="active">Inactive</label>
+          </div>
+        </label>
+      </div>
+
+      <!-- form field -->
+      <div></div>
+      <div></div>
+
+      <div>
+        <label>
+          <span>Description</span>
+          <textarea
+            class="w-80 rounded-md border-gray-300"
+            v-model="description"
+            rows="1"
+          ></textarea>
+        </label>
+      </div>
+      <div>
+        <div></div>
+        <button class="bg-red-700 mr-1 text-white rounded" type="submit">
+          Add Service
+        </button>
+        <!-- need to add styling to buttons will do later -->
+        <button
+          class="bg-red-700 mr-1 text-white rounded"
+          v-on:click="sendUpdatedItem"
+          type="button"
+        >
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+</template>
+
+<script>
+import useVuelidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
+import axios from 'axios'
+// imports the needed things
+
+const apiURL = import.meta.env.VITE_ROOT_API
+
+export default {
+  setup() {
+    return {
+      v$: useVuelidate({ $autoDirty: true })
+    }
+  },
+
+  created() {
+    /* takes data from storage and puts into an array */
+    this.servicesData = JSON.parse(localStorage.getItem('services') || '[]')
+  },
+  data() {
+    return {
+      serviceList: [],
+      id: '',
+      servicesData: [],
+      name: '',
+      status: '',
+      description: ''
+    }
+  },
+
+  methods: {
+    /* Lior added way to add items */
+    addItem() {
+      this.servicesData.push({
+        id: this.servicesData.length,
+        name: this.name,
+        status: this.status,
+        description: this.description
+      })
+      localStorage.setItem('services', JSON.stringify(this.servicesData))
+      // reset the input fields to their initial values
+      this.name = ''
+      this.status = ''
+      this.description = ''
+    },
+    updateItem(serviceID) {
+      if (localStorage.getItem('services') == null) {
+        this.serviceList = []
+      } else {
+        this.serviceList = JSON.parse(localStorage.getItem('services'))
+      }
+//seeting vaule of things to the property
+      this.name = this.serviceList[serviceID].name
+      this.status = this.serviceList[serviceID].status
+      this.description = this.serviceList[serviceID].description
+      this.id = this.serviceList[serviceID].id
+      console.log(this.id)
+    },
+    sendUpdatedItem() {
+      this.serviceList.id = this.id
+      this.serviceList[this.id].name = this.name
+      this.serviceList[this.id].status = this.status
+      this.serviceList[this.id].description = this.description
+
+      console.log(this.serviceList)
+
+      localStorage.setItem('services', JSON.stringify(this.serviceList))
+      location.reload()
+    },
+    deleteItem(serviceID) {
+      if (localStorage.getItem('services') != null) {
+        // Get the current list of services from localStorage
+        let services = JSON.parse(localStorage.getItem('services'))
+        //  service  delete
+        services.splice(serviceID, 1)
+        localStorage.setItem('services', JSON.stringify(services))
+        // Update serviceList
+        this.serviceList = services
+        //reload app
+        location.reload()
+      }
+    },
+    activeStatus(serviceID) {
+      if (localStorage.getItem('services') == null) {
+        this.serviceList = []
+      } else {
+        this.serviceList = JSON.parse(localStorage.getItem('services'))
+      }
+      // log to console
+      console.log(this.serviceList)
+
+      // toggle the status
+      const currentStatus = this.serviceList[serviceID].status
+      this.serviceList[serviceID].status =
+        currentStatus === 'active' ? 'inactive' : 'active'
+
+      localStorage.setItem('services', JSON.stringify(this.serviceList))
+      location.reload()
+    }
+  },
+  sendUpdatedItem() {
+    this.serviceList.id = this.id
+    this.serviceList[this.id].name = this.name
+    this.serviceList[this.id].status = this.status
+    this.serviceList[this.id].description = this.description
+
+    console.log(this.serviceList)
+
+    localStorage.setItem('services', JSON.stringify(this.serviceList))
+    location.reload()
+  },
+  validations: {
+    //making the name and status required with the validation
+    name: { required },
+    status: { required }
+  }
+}
+</script>
+
+<style>
+.title {
+  padding-bottom: 30px;
+}
+.row.justify-content-center {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+</style>

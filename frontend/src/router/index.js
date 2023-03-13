@@ -56,6 +56,13 @@ const routes = [
     name: 'addService',
     props: true,
     component: () => import('../components/addService.vue')
+  },
+  //lior services route to keep things all in one place
+  {
+    path: '/Services',
+    name: 'Services',
+    props: true,
+    component: () => import('../components/Services.vue')
   }
 ]
 const router = createRouter({
