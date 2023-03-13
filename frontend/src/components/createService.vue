@@ -42,8 +42,16 @@
           class="submit-button bg-red-700 text-white rounded"
           type="submit"
         >
-          <!-- submit button! -->
-          {{ buttonText }}
+        <!-- submit button! -->
+        {{ buttonText }}
+        </button>
+        <!--- @wakindo: Guys, I just added a Go Back button here so user can go back to list of services when they are done adding new one(s) instead of doing an auto reload -->
+        <button
+          type="reset"
+          class="border border-red-700 bg-white text-red-700 rounded"
+          @click="$router.back()"
+        >
+          Go back
         </button>
         <button class="clear-button" type="button" @click="clearForm">
           Clear
@@ -54,6 +62,7 @@
     <p v-if="showSuccessMessage" class="success-message">
       Service Successfully Added!
     </p>
+    
   </div>
 </template>
 

@@ -57,13 +57,14 @@ const routes = [
     component: () => import('../components/listServices_NO_NEED_Delete_After_Routing Lior vues.vue')
   },
   //@wakindo
+  //Comment this and use Lior's vue
   // add route for addService Form
-  {
+  /* {
     path: '/addService',
     name: 'addService',
     props: true,
     component: () => import('../components/addService.vue')
-  },
+  }, */
   //lior services route to keep things all in one place
   /* // {
   //   path: '/Services',
@@ -79,7 +80,7 @@ const routes = [
     component: () => import('../components/Logout.vue')
   },
   // Lior Remade how services work so now two paths are used being createdserviceslist which is the list
-  // createservice allows for creating and editing services (editing is accessed through the edit button via the list)
+  // createservice allows for creating and editing services (editing is accessed through the edit button via the list) - OK sounds good
   {
     path: '/CreatedServicesList',
     name: 'CreatedServicesList',

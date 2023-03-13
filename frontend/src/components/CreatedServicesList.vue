@@ -37,7 +37,7 @@
     <!-- form button "Add New Service" to open Lior's CreateService.vue -->
     <div class="flex justify-between">
       <button class="bg-red-700 text-white rounded" type="submit">
-        <!-- your createService is the same as the addService I did but redirecting to your vue so I won't have to change you code a lot -->
+        <!-- your createService is the same as the addService I made, but redirecting to your vue so I won't have to change you code a lot -->
         <router-link to="/createService">
           <span
             style="position: relative; top: 6px"
