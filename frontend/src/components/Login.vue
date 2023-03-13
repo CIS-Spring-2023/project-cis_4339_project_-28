@@ -20,7 +20,7 @@
           Password:
           <input
             class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            type="text"
+            type="password"
             v-model="service.description"
             required
           />
@@ -30,8 +30,16 @@
             class="submit-button bg-red-700 text-white rounded"
             type="submit"
           >
+          <router-link to="/">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  ></span> 
+                  Login
+              </router-link>
+            </button>
             {{ buttonText }}
-          </button>
+    
           <button class="clear-button" type="button" @click="clearForm">
             Clear
           </button>
@@ -39,6 +47,9 @@
       </form>
       <p v-if="showSuccessMessage" class="success-message">
         Login successful!
+      </p>
+      <p v-else-if="showFailMessage" class="fail-message">
+        Username or password incorrect
       </p>
     </div>
   </template>
@@ -63,7 +74,7 @@
     },
     computed: {
       buttonText() {
-        return this.selectedService ? 'Update Entry' : 'Submit Login'
+        return this.selectedService ? 'Update Entry' : ''
       }
     },
     methods: {
