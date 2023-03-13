@@ -102,7 +102,7 @@ export default {
         <!-- form button "Add New Service" to submit data-->
         <div class="flex justify-between mt-10 mr-20">
           <button class="bg-red-700 text-white rounded" type="submit">
-            Add New Service
+            Add Service
           </button>
         </div>
       </form>

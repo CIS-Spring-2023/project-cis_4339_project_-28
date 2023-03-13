@@ -88,7 +88,9 @@ export default {
               </router-link>
             </li>
             <!-- Lior added menu item to manage services all under one tab will have to add styling later but its a good start -->
-            <li>
+            <!-- @ wakindo: Commented this because we don't need to have two menu for the same thing -->
+            <!--
+           <li>
               <router-link to="/services">
                 <span
                   style="position: relative; top: 6px"
@@ -96,13 +98,14 @@ export default {
                   >settings</span
                 >
                 Services
-              </router-link>
-            </li>
+              </router-link> 
+            </li> 
+            -->
             <!--@wakindo -->
             <!-- menu item to add a service but I will change it later to listService
-             so we can list services / double click to update / click on btnAddNewService 
+             so we can list services / Double click to update or Delete a service/ click on btnAddNewService 
              to get to the AddService Form -->
-            <li>
+            <!-- <li>
               <router-link to="/addService">
                 <span
                   style="position: relative; top: 6px"
@@ -111,18 +114,38 @@ export default {
                 >
                 Add Service
               </router-link>
-            </li>
+            </li> -->
             <!--@wakindo -->
             <!-- Try Listing of Service menu item here
             might need to implement search by service name later --> 
-            <li>
+            <!-- <li>
               <router-link to="/listServices">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
-                  >search</span
+                  >settings</span
                 >
                 Services
+              </router-link>
+            </li> -->
+            <li>
+              <router-link to="/createService">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >settings</span
+                >
+                Create Service
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/CreatedServicesList">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >settings</span
+                >
+                Services List
               </router-link>
             </li>
             <!-- david logout page -->
