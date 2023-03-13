@@ -47,7 +47,7 @@ NB: Make sure I am on the right folder before executing:
 <<<<<<< HEAD
 - David Bonilla
 =======
-
+- Hello
 
 ### Lior - Services Documentation 
 Services tab on the sidebar will link you to the Services tab. Inside of the services tab there is a textbox where you enter the name of the service, set the status of the service, and add a description.
