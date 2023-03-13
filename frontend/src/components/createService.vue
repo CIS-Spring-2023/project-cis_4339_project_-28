@@ -42,7 +42,7 @@
           class="submit-button bg-red-700 text-white rounded"
           type="submit"
         >
-        <!-- submit button! -->
+          <!-- submit button! -->
           {{ buttonText }}
         </button>
         <button class="clear-button" type="button" @click="clearForm">
@@ -73,7 +73,8 @@ export default {
         description: '',
         active: true
       },
-      showSuccessMessage: false
+      showSuccessMessage: false,
+      showUpdateMessage: false // added variable for update message
     }
   },
   computed: {
@@ -88,21 +89,27 @@ export default {
     submitForm() {
       let createdServices =
         JSON.parse(localStorage.getItem('createdServices')) || []
-        // put in localstorage createdServices
       if (this.selectedService) {
         createdServices[this.$route.params.index] = this.service
-        this.showUpdateMessage = true // set the message to show
+        this.showUpdateMessage = true
       } else {
         createdServices.push(this.service)
-        this.showSuccessMessage = true // set the success message to show
-        this.service = { name: '', description: '', active: true } // clear the form
+        this.showSuccessMessage = true
+        this.service = { name: '', description: '', active: true }
+        setTimeout(() => {
+          this.showSuccessMessage = false
+        }, 2000) // hide success message after 2 seconds
       }
       localStorage.setItem('createdServices', JSON.stringify(createdServices))
-      this.$router.push({ name: 'CreatedServicesList' }) // redirect to the "createdServicesList" component
+      if (this.selectedService) {
+        this.$router.push({ name: 'CreatedServicesList' })
+      }
     },
+
     clearForm() {
       this.service = { name: '', description: '', active: true }
       this.showSuccessMessage = false
+      this.showUpdateMessage = false
     }
   }
 }
