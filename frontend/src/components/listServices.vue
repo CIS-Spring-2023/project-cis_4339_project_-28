@@ -4,7 +4,7 @@
       <h1
         class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
       >
-        Active Services
+        List of Services
       </h1>
       <div></div>
       <div
@@ -29,7 +29,7 @@
               <!-- Comment this as I will use it once we have the service table created and backend code done -->
               <!-- <tr
                 @click="editService(service._id)"
-                v-for="service in activeServices"
+                v-for="service in services"
                 :key="service._id"
               >
                 <td class="p-2 text-left">{{ service.name }}</td>

@@ -47,7 +47,10 @@ export default {
         description: { required }
       }
     }
-  }
+  },
+  editService(serviceID) {
+      this.$router.push({ name: 'updateService', params: { id: serviceID } })
+    }
 }
 </script>
 <template>
