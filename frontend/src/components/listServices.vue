@@ -44,7 +44,7 @@
               <tr>
                 <td class="p-2 text-left">Service Test 2</td>
                 <td class="p-2 text-left">Service test 2 description </td>
-                <td class="p-2 text-left">Active</td>
+                <td class="p-2 text-left">Inactive</td>
               </tr>
 
             </tbody>
