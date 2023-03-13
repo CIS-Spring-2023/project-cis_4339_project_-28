@@ -88,7 +88,8 @@ export default {
               </router-link>
             </li>
             <!-- Lior added menu item to manage services all under one tab will have to add styling later but its a good start -->
-            <li>
+            <!-- @ wakindo: Commented this because we don't need to have two menu for the same thing
+            <!-- <li>
               <router-link to="/services">
                 <span
                   style="position: relative; top: 6px"
@@ -96,8 +97,8 @@ export default {
                   >settings</span
                 >
                 Services
-              </router-link>
-            </li>
+              </router-link> 
+            </li> -->
             <!--@wakindo -->
             <!-- menu item to add a service but I will change it later to listService
              so we can list services / double click to update / click on btnAddNewService 
@@ -120,7 +121,7 @@ export default {
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
-                  >search</span
+                  >settings</span
                 >
                 Services
               </router-link>
