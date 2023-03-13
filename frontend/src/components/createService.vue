@@ -4,7 +4,7 @@
     <h1
       class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
     >
-      Create Service
+    {{ titleText }}
     </h1>
     <div class="px-10 pt-10"></div>
     <!-- form for the data name,description, status -->
@@ -80,6 +80,9 @@ export default {
   computed: {
     buttonText() {
       return this.selectedService ? 'Update Entry' : 'Create Service'
+    },
+    titleText() {
+      return this.selectedService ? 'Update Service' : 'Create Service'
     }
   },
 
