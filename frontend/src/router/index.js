@@ -48,14 +48,14 @@ const routes = [
     props: true,
     component: () => import('../components/eventDetails.vue')
   },
-  {
+  /* {
     //@wakindo
     // add route for listServices Form
     path: '/listServices',
     name: 'listServices',
     props: true,
     component: () => import('../components/listServices_NO_NEED_Delete_After_Routing Lior vues.vue')
-  },
+  }, */
   //@wakindo
   //Comment this and use Lior's vue
   // add route for addService Form
