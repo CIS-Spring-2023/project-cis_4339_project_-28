@@ -4,7 +4,7 @@ import axios from 'axios'
 import clientChart from './clientBarChart.vue'
 const apiURL = import.meta.env.VITE_ROOT_API
 export default {
-  //@wakindo => add clientChart components here
+  //@wakindo: add clientChart components here
   components: {
     clientChart
   },
@@ -177,7 +177,7 @@ export default {
           </h2>
         </div>
         <br />
-        <!-- @wakindo: Client Chart stuff starts here   -->
+        <!-- @wakindo: Clients Chart stuff starts here   -->
         <div>
           <clientChart
             v-if="!loading && !error"
