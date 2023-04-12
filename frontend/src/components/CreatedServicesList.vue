@@ -24,6 +24,7 @@
           <td class="p-4 text-center">{{ service.active ? 'Yes' : 'No' }}</td>
           <td class="p-4 text-center flex justify-center">
             <button class="bg-gray-500 text-white rounded mr-2" @click="editService(index)">Edit</button>
+            <button class="bg-yellow-500 text-white rounded mr-2" @click="toggleActive(index)">Toggle Active</button>
             <button class="bg-red-700 text-white rounded" @click="deleteService(index)">Delete</button>
           </td>
         </tr>
@@ -69,7 +70,13 @@ export default {
       createdServices.splice(index, 1)
       localStorage.setItem('createdServices', JSON.stringify(createdServices))
       location.reload() // reload the page to update the table
-    }
+    },
+    toggleActive(index) {
+      let createdServices = JSON.parse(localStorage.getItem('createdServices')) || [];
+      createdServices[index].active = !createdServices[index].active;
+      localStorage.setItem('createdServices', JSON.stringify(createdServices));
+      location.reload(); // reload the page to update the table
+    },
   }
 }
 </script>
