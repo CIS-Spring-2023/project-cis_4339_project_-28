@@ -27,7 +27,7 @@
             </thead>
             <tbody class="divide-y divide-gray-300">
               <!-- Comment this as I will use it once we have the service table created and backend code done -->
-              <!-- <tr
+              <tr
                 @click="editService(service._id)"
                 v-for="service in services"
                 :key="service._id"
@@ -35,7 +35,7 @@
                 <td class="p-2 text-left">{{ service.name }}</td>
                 <td class="p-2 text-left">{{ service.description }}</td>
                 <td class="p-2 text-left">{{ service.status }}</td>
-              </tr> -->
+              </tr> 
               <tr>
                 <td class="p-2 text-left">Service Test 1</td>
                 <td class="p-2 text-left">Service test 1 description</td>
