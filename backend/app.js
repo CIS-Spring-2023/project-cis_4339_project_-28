@@ -38,7 +38,7 @@ app.use('/clients', require('./routes/clients'))
 app.use('/events', require('./routes/events'))
 app.use('/org', require('./routes/org'))
 //add the one for services here when we start the backend - just uncomment next line
-//app.use('/org', require('./routes/services'))
+app.use('/org', require('./routes/services'))
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)
