@@ -62,3 +62,12 @@ The Services List tab will show a table with all current services. You can edit 
 
 
 >>>>>>> b55d5b968ecf0d2d8514b69e2020dd115217fb2e
+
+
+**LOGIN**
+admin
+password
+
+**User**
+editor
+password
