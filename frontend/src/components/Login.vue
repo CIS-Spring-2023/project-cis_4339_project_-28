@@ -81,6 +81,7 @@ export default {
         // Update the Vuex store's isAuthenticated state
         this.$store.commit('setIsAuthenticated', true)
 
+        this.$store.commit('setRole', this.username === editorCreds.username ? 'editor' : 'viewer');
         // Navigate back to the previous page, allowing the navigation guard to handle redirection
         this.$router.go(-1)
       } else {

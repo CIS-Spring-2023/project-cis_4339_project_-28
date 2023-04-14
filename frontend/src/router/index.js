@@ -2,6 +2,7 @@ import { helperNameMap } from '@vue/compiler-core'
 import { createRouter, createWebHistory } from 'vue-router';
 import store from '@/store';
 
+
 // make all paths and names lowercase for consistency
 const routes = [
   //david login

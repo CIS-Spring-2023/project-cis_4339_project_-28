@@ -1,20 +1,29 @@
 <script>
-import axios from 'axios'
-const apiURL = import.meta.env.VITE_ROOT_API
+import axios from 'axios';
+
+const apiURL = import.meta.env.VITE_ROOT_API;
 
 export default {
   name: 'App',
   data() {
     return {
-      orgName: 'Dataplatform'
-    }
+      orgName: 'Dataplatform',
+    };
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.isAuthenticated;
+    },
+    role() {
+      return this.$store.state.role;
+    },
   },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
-      this.orgName = res.data.name
-    })
-  }
-}
+      this.orgName = res.data.name;
+    });
+  },
+};
 </script>
 <template>
   <main class="flex flex-row">
@@ -48,26 +57,6 @@ export default {
               </router-link>
             </li>
             <li>
-              <router-link to="/intakeform">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >people</span
-                >
-                Client Intake Form
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/eventform">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >event</span
-                >
-                Create Event
-              </router-link>
-            </li>
-            <li>
               <router-link to="/findclient">
                 <span
                   style="position: relative; top: 6px"
@@ -87,6 +76,68 @@ export default {
                 Find Event
               </router-link>
             </li>
+
+            <div v-if="role === 'editor'">
+              <li>
+                <router-link to="/intakeform">
+                  <span
+                    style="position: relative; top: 6px"
+                    class="material-icons"
+                    >people</span
+                  >
+                  Client Intake Form
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/eventform">
+                  <span
+                    style="position: relative; top: 6px"
+                    class="material-icons"
+                    >event</span
+                  >
+                  Create Event
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/CreatedServicesList">
+                  <span
+                    style="position: relative; top: 6px"
+                    class="material-icons"
+                    >settings</span
+                  >
+                  Services
+                </router-link>
+              </li>
+            </div>
+
+            <!-- david logout page -->
+            <li>
+              <router-link to="/logout">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >logout</span
+                >
+                Logout
+              </router-link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div class="grow w-4/5">
+      <section
+        class="justify-end items-center h-24 flex"
+        style="background: linear-gradient(250deg, #c8102e 70%, #efecec 50.6%)"
+      >
+        <h1 class="mr-20 text-3xl text-white">{{ this.orgName }}</h1>
+      </section>
+      <div>
+        <router-view></router-view>
+      </div>
+    </div>
+  </main>
+</template>
             <!-- Lior added menu item to manage services all under one tab will have to add styling later but its a good start -->
             <!-- @ wakindo: Commented this because we don't need to have two menu for the same thing -->
             <!--
@@ -139,45 +190,7 @@ export default {
                 Create Service
               </router-link>
             </li> -->
-            <li>
-              <router-link to="/CreatedServicesList">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >settings</span
-                >
-                Services
-              </router-link>
-            </li>
-            <!-- david logout page -->
-            <li>
-              <router-link to="/login">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >logout</span
-                >
-                Logout
-              </router-link>
-            </li>
-
-          </ul>
-        </nav>
-      </header>
-    </div>
-    <div class="grow w-4/5">
-      <section
-        class="justify-end items-center h-24 flex"
-        style="background: linear-gradient(250deg, #c8102e 70%, #efecec 50.6%)"
-      >
-        <h1 class="mr-20 text-3xl text-white">{{ this.orgName }}</h1>
-      </section>
-      <div>
-        <router-view></router-view>
-      </div>
-    </div>
-  </main>
-</template>
+            
 <style>
 #_container {
   background-color: #c8102e;
