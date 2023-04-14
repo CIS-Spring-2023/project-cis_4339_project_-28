@@ -72,6 +72,7 @@ export default {
 
 <template>
   <main>
+    <!-- first div after main -->
     <div>
       <h1
         class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
@@ -79,10 +80,13 @@ export default {
         Welcome
       </h1>
       <br />
+      <!--  div grid grid-cols-1- -->
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
       >
+        <!-- open and closed so ok -->
         <div class="ml-10"></div>
+         <!--  div flex flex-col- -->
         <div class="flex flex-col col-span-2">
           <table class="min-w-full shadow-md rounded">
             <thead class="bg-gray-50 text-xl">
@@ -104,6 +108,7 @@ export default {
               </tr>
             </tbody>
           </table>
+          <!-- div Attendance Chart -->
           <div>
             <AttendanceChart
               v-if="!loading && !error"
@@ -130,10 +135,32 @@ export default {
                 {{ error.message }}
               </p>
             </div>
-            <!-- End of error alert -->
+            <!-- End of error alert --> 
           </div>
+          <!-- end div attendance chart -->
+
+          <br />
+          <!-- Chart of Clients by Zip Code -->
+          <div class="mt-40">
+            <h2 class="italic font-bold text-center">
+              Chart of Clients by Zip Code below:
+            </h2>
+          </div>
+          <br />
+          <!-- @wakindo: Clients Chart stuff starts here   -->
+          <div>
+            <clientChart
+              v-if="!loading && !error"
+              :label="labels"
+              :chart-data="chartData"
+            ></clientChart>
+          </div>
+          <!--  div flex flex-col- -->
         </div>
+        <!-- first div grid grid-cols-1- -->
       </div>
+      <!-- for first div after main -->   
     </div>
+    
   </main>
 </template>
