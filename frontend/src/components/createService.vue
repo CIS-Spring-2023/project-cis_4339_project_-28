@@ -105,6 +105,7 @@ export default {
         createdServices[this.$route.params.index] = this.service
         this.showUpdateMessage = true
       } else {
+        //Lior Old code with services saved in array createdServices
         createdServices.push(this.service)
         this.showSuccessMessage = true
         this.service = { name: '', description: '', active: true }
