@@ -1,6 +1,8 @@
 <template>
   <div class="create-service">
-    <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">
+    <h1
+      class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
+    >
       Login Information
     </h1>
     <div class="px-10 pt-10"></div>
@@ -52,41 +54,49 @@ export default {
       showFailMessage: false,
       hardcodedCredentials: {
         editor: {
-          username: 'editor',
-          password: 'password'
+          username: '1',
+          password: '1'
         },
         viewer: {
           username: 'viewer',
           password: 'viewerpassword'
         }
       }
-    };
+    }
   },
   methods: {
     submitForm() {
-      const editorCreds = this.hardcodedCredentials.editor;
-      const viewerCreds = this.hardcodedCredentials.viewer;
+      const editorCreds = this.hardcodedCredentials.editor
+      const viewerCreds = this.hardcodedCredentials.viewer
 
       if (
-        (this.username === editorCreds.username && this.password === editorCreds.password) ||
-        (this.username === viewerCreds.username && this.password === viewerCreds.password)
+        (this.username === editorCreds.username &&
+          this.password === editorCreds.password) ||
+        (this.username === viewerCreds.username &&
+          this.password === viewerCreds.password)
       ) {
-        this.showSuccessMessage = true;
-        this.showFailMessage = false;
-        this.$router.push({ name: 'dashboard', params: { role: this.username } });
+        this.showSuccessMessage = true
+        this.showFailMessage = false
+
+        // Update the Vuex store's isAuthenticated state
+        this.$store.commit('setIsAuthenticated', true)
+
+        // Navigate back to the previous page, allowing the navigation guard to handle redirection
+        this.$router.go(-1)
       } else {
-        this.showFailMessage = true;
-        this.showSuccessMessage = false;
+        this.showFailMessage = true
+        this.showSuccessMessage = false
       }
     },
+
     clearForm() {
-      this.username = '';
-      this.password = '';
-      this.showSuccessMessage = false;
-      this.showFailMessage = false;
+      this.username = ''
+      this.password = ''
+      this.showSuccessMessage = false
+      this.showFailMessage = false
     }
   }
-};
+}
 </script>
 
 <style>

@@ -1,5 +1,6 @@
 import { helperNameMap } from '@vue/compiler-core'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import store from '@/store';
 
 // make all paths and names lowercase for consistency
 const routes = [
@@ -74,6 +75,15 @@ const routes = [
 ]
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
-export default router
+  routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'login' && !store.state.isAuthenticated) {
+    next({ name: 'login' });
+  } else {
+    next();
+  }
+});
+
+export default router;
