@@ -1,5 +1,5 @@
 const express = require('express')
-const mongoose = require('mongoose') //require mongoose library functionaility
+const mongoose = require('mongoose') //require mongoose library functionality
 const morgan = require('morgan') // better debugging
 
 const cors = require('cors')
@@ -37,8 +37,8 @@ app.use(morgan('dev'))
 app.use('/clients', require('./routes/clients'))
 app.use('/events', require('./routes/events'))
 app.use('/org', require('./routes/org'))
-//add the one for services here when we start the backend - just uncomment next line
-app.use('/org', require('./routes/services'))
+//services backend - all CRUD Ops for this services are located there
+app.use('/services', require('./routes/services'))
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)
