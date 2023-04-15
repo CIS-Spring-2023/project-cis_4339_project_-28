@@ -52,6 +52,8 @@ export default {
       password: '',
       showSuccessMessage: false,
       showFailMessage: false,
+
+      // hardcoded creds need to be replaced
       hardcodedCredentials: {
         editor: {
           username: '1',
@@ -66,9 +68,11 @@ export default {
   },
   methods: {
     submitForm() {
+      //  call to backend would replace the hardcode stuff
       const editorCreds = this.hardcodedCredentials.editor
       const viewerCreds = this.hardcodedCredentials.viewer
 
+// Check if the entered username and password match the hardcoded creds
       if (
         (this.username === editorCreds.username &&
           this.password === editorCreds.password) ||
