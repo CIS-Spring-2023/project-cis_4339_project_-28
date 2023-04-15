@@ -96,28 +96,52 @@ export default {
   },
 
   // is it an update or creation?
+
+  // submitform does both it creates an entry and can update the entry
+  // 
   methods: {
-    // what to do it u submit
+    // what to do if u submit
     submitForm() {
+      // gets the already present 'createServices' data from local storage 
+      // it uses "getitem" on "localstorage" to find the key "createdServices"
+      // IF nothing has the key "createdServices" inside of localstorage it returns null
+      // IF null is returned it then makes an empty array
       let createdServices =
         JSON.parse(localStorage.getItem('createdServices')) || []
       if (this.selectedService) {
+        // checks if the selectedService prop has a value
         createdServices[this.$route.params.index] = this.service
+        // shows the update message
         this.showUpdateMessage = true
-      } else {
+        
+
+      } else { //if selectedService doesnt have a value or returns null 
         //Lior Old code with services saved in array createdServices
-        createdServices.push(this.service)
+        createdServices.push(this.service)//The new service object 'this.service' is added to the createdServices array, making a new service entry
         this.showSuccessMessage = true
         this.service = { name: '', description: '', active: true }
         setTimeout(() => {
           this.showSuccessMessage = false
         }, 2000) // hide success message after 2 seconds
       }
-      localStorage.setItem('createdServices', JSON.stringify(createdServices))
+      localStorage.setItem('createdServices', JSON.stringify(createdServices)) // saves the updated 'createdServices' array to the local storage
       if (this.selectedService) {
         this.$router.push({ name: 'CreatedServicesList' })
       }
     },
+
+///////////////////////////////////////////////////
+//                    ALL THE THINGS
+//
+// createdServices:  array that stores all the created services
+//
+// this.selectedService:  prop that represents the service that is being edited or updated
+//                        if this prop has a value the user is updating a service
+//                        if  null the user is creating a new service
+//
+// this.service:  object containing the data for the service being created or updated. It has properties name, description, and active.
+// 
+///////////////////////////////////////////////////
 
     clearForm() {
       this.service = { name: '', description: '', active: true }
