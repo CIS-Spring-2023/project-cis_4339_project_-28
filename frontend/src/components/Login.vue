@@ -56,8 +56,8 @@ export default {
       // hardcoded creds need to be replaced
       hardcodedCredentials: {
         editor: {
-          username: '1',
-          password: '1'
+          username: 'editor',
+          password: 'password'
         },
         viewer: {
           username: 'viewer',
