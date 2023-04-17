@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 
 const store = createStore({
   state: {
@@ -21,6 +22,7 @@ const store = createStore({
       // localStorage.removeItem('token');
     },
   },
+  plugins: [createPersistedState()],
 });
-//test
+
 export default store;
