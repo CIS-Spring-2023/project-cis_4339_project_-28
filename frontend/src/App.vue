@@ -1,38 +1,38 @@
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
-const apiURL = import.meta.env.VITE_ROOT_API;
+const apiURL = import.meta.env.VITE_ROOT_API
 
 export default {
   name: 'App',
   data() {
     return {
-      orgName: 'Dataplatform',
-    };
+      orgName: 'Dataplatform'
+    }
   },
   computed: {
     isAuthenticated() {
-      return this.$store.state.isAuthenticated;
+      return this.$store.state.isAuthenticated
     },
     role() {
-      return this.$store.state.role;
-    },
+      return this.$store.state.role
+    }
   },
   methods: {
     logout() {
       // Dispatch the logout action from your Vuex store
-      this.$store.dispatch('logout');
+      this.$store.dispatch('logout')
 
       // Redirect the user to the login page
-      this.$router.push('/login');
-    },
+      this.$router.push('/login')
+    }
   },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
-      this.orgName = res.data.name;
-    });
-  },
-};
+      this.orgName = res.data.name
+    })
+  }
+}
 </script>
 <template>
   <main class="flex flex-row">
@@ -45,7 +45,7 @@ export default {
         <nav class="mt-10">
           <ul class="flex flex-col gap-4">
             <!-- david login page -->
-            <li>
+            <li v-if="!isAuthenticated">
               <router-link to="/login">
                 <span
                   style="position: relative; top: 6px"
@@ -55,7 +55,7 @@ export default {
                 Login
               </router-link>
             </li>
-            <li>
+            <li v-if="isAuthenticated">
               <router-link to="/">
                 <span
                   style="position: relative; top: 6px"
@@ -65,7 +65,7 @@ export default {
                 Dashboard
               </router-link>
             </li>
-            <li>
+            <li v-if="isAuthenticated">
               <router-link to="/findclient">
                 <span
                   style="position: relative; top: 6px"
@@ -75,7 +75,7 @@ export default {
                 Find Client
               </router-link>
             </li>
-            <li>
+            <li v-if="isAuthenticated">
               <router-link to="/findevents">
                 <span
                   style="position: relative; top: 6px"
@@ -121,7 +121,7 @@ export default {
             </div>
 
             <!-- david logout page -->
-            <li>
+            <li v-if="isAuthenticated">
               <button @click="logout">
                 <span
                   style="position: relative; top: 6px"
