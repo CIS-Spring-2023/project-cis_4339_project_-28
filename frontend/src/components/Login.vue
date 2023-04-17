@@ -87,7 +87,7 @@ export default {
 
         this.$store.commit('setRole', this.username === editorCreds.username ? 'editor' : 'viewer');
         // Navigate back to the previous page, allowing the navigation guard to handle redirection
-        this.$router.go(-1)
+        this.$router.push('/')
       } else {
         this.showFailMessage = true
         this.showSuccessMessage = false
