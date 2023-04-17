@@ -54,8 +54,8 @@ export default {
       showFailMessage: false,
       hardcodedCredentials: {
         editor: {
-          username: '1',
-          password: '1'
+          username: 'editor',
+          password: 'password'
         },
         viewer: {
           username: 'viewer',
