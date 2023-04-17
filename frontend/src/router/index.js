@@ -50,13 +50,14 @@ const routes = [
     props: true,
     component: () => import('../components/eventDetails.vue')
   },
-  //david logout
-  {
-    path: '/logout',
-    name: 'logout',
-    props: true,
-    component: () => import('../components/Logout.vue')
-  },
+  // //david logout
+  // {
+  //   path: '/logout',
+  //   name: 'logout',
+  //   props: true,
+  //   component: () => import('../components/Logout.vue')
+  // }, 
+  // removing old unneeded old code
   // Lior Remade how services work so now two paths are used being createdserviceslist which is the list
   // createservice allows for creating and editing services (editing is accessed through the edit button via the list) - OK sounds good
   // {
