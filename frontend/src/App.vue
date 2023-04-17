@@ -18,6 +18,15 @@ export default {
       return this.$store.state.role;
     },
   },
+  methods: {
+    logout() {
+      // Dispatch the logout action from your Vuex store
+      this.$store.dispatch('logout');
+
+      // Redirect the user to the login page
+      this.$router.push('/login');
+    },
+  },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
       this.orgName = res.data.name;
@@ -112,14 +121,14 @@ export default {
 
             <!-- david logout page -->
             <li>
-              <router-link to="/logout">
+              <button @click="logout">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
                   >logout</span
                 >
                 Logout
-              </router-link>
+              </button>
             </li>
           </ul>
         </nav>
@@ -137,7 +146,7 @@ export default {
       </div>
     </div>
   </main>
-</template>            
+</template>
 <style>
 #_container {
   background-color: #c8102e;
