@@ -50,43 +50,7 @@
     </div>      
   </div>
 </template>
-<script>
-export default {
-  computed: {
 
-    // Read createdServices from local storage 
-
-    createdServices() {
-      return JSON.parse(localStorage.getItem('createdServices')) || []
-    }
-  },
-  methods: {
-    editService(index) {
-      this.$router.push({
-        name: 'createService',
-        params: { index }
-      })
-    },
-
-    // Update local storage
-    deleteService(index) {
-      let createdServices =
-        JSON.parse(localStorage.getItem('createdServices')) || []
-      createdServices.splice(index, 1)
-      localStorage.setItem('createdServices', JSON.stringify(createdServices))
-      location.reload() // reload the page to update the table
-    },
-
-    // update the active status
-    toggleActive(index) {
-      let createdServices = JSON.parse(localStorage.getItem('createdServices')) || [];
-      createdServices[index].active = !createdServices[index].active;
-      localStorage.setItem('createdServices', JSON.stringify(createdServices));
-      location.reload(); // reload the page to update the table
-    },
-  }
-}
-</script>
 <style>
 .container {
   margin: 0 auto;

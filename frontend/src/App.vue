@@ -99,7 +99,8 @@ export default {
                 </router-link>
               </li>
               <li>
-                <router-link to="/CreatedServicesList">
+                <!-- <router-link to="/CreatedServicesList"> -->
+                <router-link to="/listServices">
                   <span
                     style="position: relative; top: 6px"
                     class="material-icons"

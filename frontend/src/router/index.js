@@ -59,12 +59,24 @@ const routes = [
   },
   // Lior Remade how services work so now two paths are used being createdserviceslist which is the list
   // createservice allows for creating and editing services (editing is accessed through the edit button via the list) - OK sounds good
+  // {
+  //   path: '/CreatedServicesList',
+  //   name: 'CreatedServicesList',
+  //   props: true,
+  //   component: () => import('../components/CreatedServicesList.vue')
+  // },
+
+  // updated part wakindo starts here
+  // Leave Lior's CreatedServicesList as a backup in case anything goes wrong
+  //listServices allows for viewing and editing services (editing is accessed through the edit button via the list) 
+  // => using db and backend this time
   {
-    path: '/CreatedServicesList',
-    name: 'CreatedServicesList',
+    path: '/listservices',
+    name: 'listservices',
     props: true,
-    component: () => import('../components/CreatedServicesList.vue')
+    component: () => import('../components/listServices.vue')
   },
+  // updated part wakindo ends here
   {
     path: '/createService/:index?',
     name: 'createService',
