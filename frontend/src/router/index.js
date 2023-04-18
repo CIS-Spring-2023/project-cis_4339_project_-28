@@ -77,6 +77,12 @@ const routes = [
     props: true,
     component: () => import('../components/listServices.vue')
   },
+  {
+    path: '/updateService/:id',
+    name: 'updateService',
+    props: true,
+    component: () => import('../components/updateService.vue')
+  },
   // updated part wakindo ends here
   {
     path: '/createService/:index?',
