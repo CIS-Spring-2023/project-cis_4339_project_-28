@@ -66,39 +66,39 @@ export default {
   },
   methods: {
     submitForm() {
-      const editorCreds = this.hardcodedCredentials.editor
-      const viewerCreds = this.hardcodedCredentials.viewer
+      // Hardcoded creds for editor and viewer (replace here when going to backend)
+      const editorCreds = this.hardcodedCredentials.editor;
+      const viewerCreds = this.hardcodedCredentials.viewer;
 
+      // Check if the entered username and password match either the editor or viewer credentials
       if (
         (this.username === editorCreds.username &&
           this.password === editorCreds.password) ||
         (this.username === viewerCreds.username &&
           this.password === viewerCreds.password)
       ) {
-        this.showSuccessMessage = true
-        this.showFailMessage = false
+        // If the credentials match show the success message
+        this.showSuccessMessage = true;
+        this.showFailMessage = false;
 
-        // Update the Vuex store's isAuthenticated state
-        this.$store.commit('setIsAuthenticated', true)
+        // Update the Vuex store isAuthenticated state to true (user is logged in)
+        this.$store.commit('setIsAuthenticated', true);
 
+        // Update the Vuex store role state based on the matched credentials (editor or viewer)
         this.$store.commit('setRole', this.username === editorCreds.username ? 'editor' : 'viewer');
-        // Navigate back to the previous page, allowing the navigation guard to handle redirection
-        this.$router.push('/')
+
+        // Navigate to the dashboard
+        this.$router.push('/');
       } else {
-        this.showFailMessage = true
-        this.showSuccessMessage = false
+        // If the credentials don't match, show the failure message and hide the success message
+        this.showFailMessage = true;
+        this.showSuccessMessage = false;
       }
     },
-
-    clearForm() {
-      this.username = ''
-      this.password = ''
-      this.showSuccessMessage = false
-      this.showFailMessage = false
-    }
-  }
+  },
 }
 </script>
+
 
 <style>
 label {
