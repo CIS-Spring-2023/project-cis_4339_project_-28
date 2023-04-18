@@ -21,8 +21,7 @@
               <tr class="p-4 text-left">
                 <th class="p-4 text-left">Name</th>
                 <th class="p-4 text-left">Description</th>
-                <th class="p-4 text-left">Status</th>
-                <th class="p-4 text-left">Action</th>
+                <th class="p-4 text-left">Active</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-300">
@@ -36,10 +35,6 @@
                 <td class="p-2 text-left">{{ service.description }}</td>
                 <td class="p-2 text-left">
                   {{ service.status ? 'Yes' : 'No' }}
-                </td>
-                <td class="p-4 text-center flex justify-center">
-                  <button class="bg-gray-500 text-white rounded mr-2" @click="editService(index)">Edit</button>
-                  <button class="bg-red-700 text-white rounded" @click="deleteService(index)">Delete</button>
                 </td>
               </tr> 
             </tbody>
@@ -107,31 +102,15 @@ export default {
           console.log(error);
         });
     },
-    // abstract get clients call
+    // abstract get Services call
     getServices() {
       axios.get(`${apiURL}/services`).then((res) => {
         this.serviceData = res.data
       })
     },
-    /* method for deleting iso */
-    deleteservice(service_id) {
-      if (
-        confirm(
-          "Are you sure you want to permanently delete this service? This cannot be undone."
-        )
-      ) {
-        /* axios delete request, uses api URL and attaches id at end of it to specify what id to delete */
-        axios.delete(apiURL + "?id=" + service_id).then(() => {
-          /* reloads window to show changes */
-          window.location.reload();
-        });
-      }
-    },
-    /* method for routing to edit page */
-    editservice(service_id) {
-      /* Activates on click of table property, routes to update page bases on name in index.js, params are the id of the item which is stored in id:  */
-      this.$router.push({ name: "updateservice", params: { id: service_id } });
+    editService(serviceID) {
+      this.$router.push({ name: 'updateService', params: { id: serviceID } })
     },
   },
-};
+}
 </script>
