@@ -45,6 +45,8 @@ NB: Make sure I am on the right folder before executing:
 - Have my viewpoint ready
 - * Continue with "add service" form and see how it should go with Prof. Lindner
 - last commit for today: 20230420
+
+
 #### DO NOT FORGET TO ADD AT LEAST ONE ORG(with default name set on .env file) TO DB TO PREVENT ERROR ON APP.VUE
 db.org.insertOne(
 {
