@@ -47,16 +47,13 @@ export default {
       axios.delete(`${apiURL}/services/${this.id}`).then(() => {
         alert('Service has been deleted.')
         this.$router.back()
-        //this.$router.push({ name: 'listservices' })
       })
     },
   },
   validations() {
     return {
       service: {
-        name: { required, alpha },
-        description: {},
-        status: {},
+        name: { required, alpha }
       }
     }
   }
