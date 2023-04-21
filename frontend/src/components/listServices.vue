@@ -94,7 +94,7 @@ export default {
         /* sends POST request through axios to backend, alerts user of success, then reloads page through router */
         .post(apiURL, this.service)
         .then(() => {
-          alert("service has been successfully added.");
+          alert("Service has been successfully added.");
           /* reloads window to show changes */
           window.location.reload();
         })

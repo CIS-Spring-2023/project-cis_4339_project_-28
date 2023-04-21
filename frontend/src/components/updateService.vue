@@ -1,13 +1,10 @@
 <script>
 import useVuelidate from '@vuelidate/core'
-import { required, email, alpha, numeric } from '@vuelidate/validators'
-import VueMultiselect from 'vue-multiselect'
+import { required, alpha } from '@vuelidate/validators'
 import axios from 'axios'
 const apiURL = import.meta.env.VITE_ROOT_API
-
 export default {
   props: ['id'],
-  components: { VueMultiselect },
   setup() {
     return { v$: useVuelidate({ $autoDirty: true }) }
   },
@@ -40,7 +37,7 @@ export default {
         axios
           .put(`${apiURL}/services/update/${this.id}`, this.service)
           .then(() => {
-            alert('Service has been updated!')
+            alert('Service has been updated.')
             this.$router.back()
           })
       }
@@ -49,7 +46,7 @@ export default {
     deleteService() {
       axios.delete(`${apiURL}/services/${this.id}`).then(() => {
         alert('Service has been deleted.')
-        this.$router.push({ name: 'listServices' })
+        this.$router.push({ name: 'listservices' })
       })
     },
   },
@@ -58,7 +55,7 @@ export default {
       service: {
         name: { required, alpha },
         description: {},
-        status: { required },
+        status: {},
       }
     }
   }
@@ -76,28 +73,25 @@ export default {
     <div class="px-10 pt-10"></div>
     <!-- form for the data name,description, status -->
     <form @submit.prevent="submitForm">
-      <label class="block">
-        <!-- Name is required  -->
-        <span class="text-gray-700">Service Name</span>
-        <span style="color: #ff0000">*</span>
+      <label class="text-2xl font-bold">
+        Service Name:
         <input
           class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           type="text"
           v-model="service.name"
           required
-        />      
+        />
       </label>
-      <!-- Description isn't required so no * -->
-      <label class="block">
-        <span class="text-gray-700">Description</span> 
+      <label class="text-2xl font-bold">
+        Description:
         <input
           class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           type="text"
           v-model="service.description"
         />
       </label>
-      <label class="block">
-        <span class="text-gray-700">Active Status</span>
+      <label class="text-2xl font-bold">
+        Active Status:
         <input
           class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
           notchecked
@@ -128,10 +122,6 @@ export default {
           @click="$router.back()"
         >
           Go back
-        </button>
-        <!-- a button to clear incase the person is to lazy to hit backspace -->
-        <button class="clear-button" type="button" @click="clearForm">
-          Clear
         </button>
       </div>
     </form>
