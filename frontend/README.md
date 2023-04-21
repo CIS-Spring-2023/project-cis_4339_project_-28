@@ -32,6 +32,7 @@ Shavin, Packt Publishing (November, 2020)
 
 
 
+
 *********************************************************************************
 NB: Make sure I am on the right folder before executing:
 - Project setup above i.e. "cd frontend" ,  "npm install" and then "npm run dev"
@@ -43,9 +44,15 @@ NB: Make sure I am on the right folder before executing:
 - Think about navigation schema with teammate on Sunday
 - Have my viewpoint ready
 - * Continue with "add service" form and see how it should go with Prof. Lindner
-- last commit for today: 20230224_0400
+- last commit for today: 20230420
+#### DO NOT FORGET TO ADD AT LEAST ONE ORG(with default name set on .env file) TO DB TO PREVENT ERROR ON APP.VUE
+db.org.insertOne(
+{
+    name: "LocalOrg"
+});
+
 <<<<<<< HEAD
-- David Bonilla
+- David Bonilla - Dropped the class
 =======
 - Hello
 
