@@ -13,7 +13,7 @@ export default {
       service: {
         name: "",
         description: "",
-        status: "",
+        status: "true", //default value - no sense added an inactive service
       },
       serviceData: [],
 
@@ -31,7 +31,7 @@ export default {
           .then(() => {
             alert('Service has been added.') // Confirm service added to DB
             //Go back to the list of services
-            this.$router.push({ name: 'listServices'})
+            this.$router.push({ name: 'listservices' })
           })
           .catch((error) => {
             console.log(error)
@@ -45,7 +45,7 @@ export default {
       service: {
         name: { required },
         description: {},
-        status: {}
+        status: {required} //required as it does not make sense to add a service that will not be "Active"
       }
     }
   }
@@ -79,7 +79,6 @@ export default {
           class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           type="text"
           v-model="service.description"
-          required
         />
       </label>
       <label class="text-2xl font-bold">
@@ -106,7 +105,7 @@ export default {
         Go back
         </button>
 
-        <button class="clear-button" type="button" @click="clearForm">
+        <button class="clear-button" type="reset" @click="clearForm">
           Clear
         </button>
         <!-- a button to clear incase the person is to lazy to hit backspace -->
