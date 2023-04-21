@@ -1,8 +1,6 @@
 <script>
 import axios from 'axios'
-
 const apiURL = import.meta.env.VITE_ROOT_API
-
 export default {
   name: 'App',
   data() {

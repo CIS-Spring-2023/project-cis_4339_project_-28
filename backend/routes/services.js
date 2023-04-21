@@ -52,5 +52,15 @@ router.post('/', (req, res, next) => {
   })
 })
 
+// PUT update service
+router.put('/update/:id', (req, res, next) => {
+  clients.findByIdAndUpdate(req.params.id, req.body, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
 
 module.exports = router
