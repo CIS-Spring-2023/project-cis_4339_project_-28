@@ -38,7 +38,6 @@ router.get('/id/:id', (req, res, next) => {
   })
 })
 
-
 // POST new service
 router.post('/', (req, res, next) => {
   const newService = req.body
@@ -59,6 +58,19 @@ router.put('/update/:id', (req, res, next) => {
       return next(error)
     } else {
       res.json(data)
+    }
+  })
+})
+
+// hard DELETE Service by ID, as per project specifications
+router.delete('/:id', (req, res, next) => {
+  services.findByIdAndDelete(req.params.id, (error, data) => {
+    if (error) {
+      return next(error)
+    } else if (!data) {
+      res.status(400).send('Service not found')
+    } else {
+      res.send('Service deleted')
     }
   })
 })

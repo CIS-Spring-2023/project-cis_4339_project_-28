@@ -71,7 +71,6 @@ export default {
           v-model="service.name"
           required
         />
-        <!-- each part is required  -->
       </label>
       <label class="text-2xl font-bold">
         Description:
@@ -104,7 +103,6 @@ export default {
         >
         Go back
         </button>
-
         <button class="clear-button" type="reset" @click="clearForm">
           Clear
         </button>

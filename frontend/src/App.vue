@@ -27,9 +27,8 @@ export default {
   },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
-      this.orgName = res.data
+      this.orgName = res.data  //removed ".name" at the end of "res.data.name" due to error - check with Lior if he knows about it so I don't mess up with his code
       console.log(res.data)
-      //remove ".name" at the end of "res.data.name" due to error - check with Lior if he knows about it so I don't mess up with his code
     })
   }
 }
