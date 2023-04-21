@@ -29,11 +29,12 @@ export default {
   },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
-      this.orgName = res.data.name
+      this.orgName = res.data //remove ".name" at the end of "res.data.name" due to error - check with Lior if he knows about it so I don't mess up with his code
     })
   }
 }
 </script>
+
 <template>
   <main class="flex flex-row">
     <div id="_container" class="h-screen">
