@@ -11,12 +11,10 @@ export default {
   data() {
     return {
       service: {
-        name: "",
-        description: "",
-        status: "",
-      },
-      serviceData: [],
-
+        name: '',
+        description: '',
+        status: ''
+      }
     }
   },
   created() {
@@ -48,7 +46,7 @@ export default {
         alert('Service has been deleted.')
         this.$router.back()
       })
-    },
+    }
   },
   validations() {
     return {
@@ -98,12 +96,14 @@ export default {
         />
       </label>
       <div class="button-group">
-        <!-- update button -->
-        <button 
+        <!-- update button --> 
+        <!-- onclick="alert('Hello Update')" --was just testing the update click event -->
+        <button
           @click="updateService"
           type="submit"
-          class="bg-green-700 text-white rounded" 
-        > Update
+          class="bg-green-700 text-white rounded"
+        >
+          Update
         </button>
         <!-- delete button -->
         <button
@@ -111,7 +111,7 @@ export default {
           type="submit"
           class="bg-red-700 text-white rounded"
         >
-          Delete 
+          Delete
         </button>
         <!---  Go Back button here so user can go back to list of services when they are done adding new one(s) instead of doing an auto reload -->
         <button
@@ -125,7 +125,6 @@ export default {
     </form>
   </div>
 </template>
-
 
 <style>
 label {

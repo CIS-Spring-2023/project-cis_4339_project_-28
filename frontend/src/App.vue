@@ -5,7 +5,7 @@ export default {
   name: 'App',
   data() {
     return {
-      orgName: 'Dataplatform'
+      orgName: 'Community Garden',
     }
   },
   computed: {
@@ -27,7 +27,7 @@ export default {
   },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
-      this.orgName = res.data.name 
+      this.orgName = res.data.name
       console.log(orgName)
     })
   }
