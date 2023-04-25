@@ -5,7 +5,7 @@ export default {
   name: 'App',
   data() {
     return {
-      orgName: 'Community Garden',
+      orgName: 'Community Garden'
     }
   },
   computed: {
@@ -27,10 +27,15 @@ export default {
   },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
-      console.log(res.data)
+      //console.log(res.data)
       this.orgName = res.data.name
-    //removed the .name but it is still giving me the same error
-      console.log(this.orgName)
+      //console.log(this.orgName)
+      //removed the .name but it is still giving me the same error: issue solved with created one org as followed:
+      //     db.org.insertOne(
+      // {	_id: "ORG",
+      //     name: "Community Garden"
+      // });
+      //
     })
   }
 }
