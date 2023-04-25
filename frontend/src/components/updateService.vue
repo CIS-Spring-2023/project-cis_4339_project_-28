@@ -44,13 +44,6 @@ export default {
         this.$router.back()
       })
     }
-  },
-  validations() {
-    return {
-      service: {
-        name: { required, alpha }
-      }
-    }
   }
 }
 </script>
