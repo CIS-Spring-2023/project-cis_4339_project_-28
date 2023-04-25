@@ -27,7 +27,8 @@ export default {
   },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
-      this.orgName = res.data //.name
+      console.log(res.data)
+      this.orgName = res.data.name
     //removed the .name but it is still giving me the same error
       console.log(this.orgName)
     })
