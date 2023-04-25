@@ -56,8 +56,8 @@ export default {
       // hardcoded creds need to be replaced
       hardcodedCredentials: {
         editor: {
-          username: '1',
-          password: '1'
+          username: 'editor',
+          password: 'password'
         },
         viewer: {
           username: 'viewer',
@@ -79,30 +79,28 @@ export default {
         (this.username === viewerCreds.username &&
           this.password === viewerCreds.password)
       ) {
-        this.showSuccessMessage = true
-        this.showFailMessage = false
+        // If the credentials match show the success message
+        this.showSuccessMessage = true;
+        this.showFailMessage = false;
 
-        // Update the Vuex store's isAuthenticated state
-        this.$store.commit('setIsAuthenticated', true)
+        // Update the Vuex store isAuthenticated state to true (user is logged in)
+        this.$store.commit('setIsAuthenticated', true);
 
+        // Update the Vuex store role state based on the matched credentials (editor or viewer)
         this.$store.commit('setRole', this.username === editorCreds.username ? 'editor' : 'viewer');
-        // Navigate back to the previous page, allowing the navigation guard to handle redirection
-        this.$router.go(-1)
+
+        // Navigate to the dashboard
+        this.$router.push('/');
       } else {
-        this.showFailMessage = true
-        this.showSuccessMessage = false
+        // If the credentials don't match, show the failure message and hide the success message
+        this.showFailMessage = true;
+        this.showSuccessMessage = false;
       }
     },
-
-    clearForm() {
-      this.username = ''
-      this.password = ''
-      this.showSuccessMessage = false
-      this.showFailMessage = false
-    }
-  }
+  },
 }
 </script>
+
 
 <style>
 label {

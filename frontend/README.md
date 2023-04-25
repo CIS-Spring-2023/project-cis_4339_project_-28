@@ -60,6 +60,7 @@ db.org.insertOne(
 
 <<<<<<< HEAD
 - David Bonilla - Dropped the class
+- David Bonilla - Dropped the class
 =======
 - Hello
 
