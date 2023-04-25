@@ -50,34 +50,6 @@ router.post('/', (req, res, next) => {
     }
   })
 })
-
-// PUT update service
-//PUT Updating - editing a Service
-router.put('/update/:id', (req, res, next) => {
-  console.log(req.body)
-  services.findOneAndUpdate(req.params.id, req.body, (error, data) => {
-    if (error) {
-      console.log(error)
-      return next(error)
-    } else {
-      console.log(data)
-      res.json(data)
-    }
-  })
-})
-
-// hard DELETE Service by ID, as per project specifications
-router.delete('/:id', (req, res, next) => {
-  services.findByIdAndDelete(req.params.id, (error, data) => {
-    if (error) {
-      return next(error)
-    } else if (!data) {
-      res.status(400).send('Service not found')
-    } else {
-      res.send('Service deleted')
-    }
-  })
-})
 // PUT / Update service
 
 router.put('/update/:id', (req, res, next) => {
