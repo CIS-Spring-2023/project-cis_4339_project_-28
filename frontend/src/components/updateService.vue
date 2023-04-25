@@ -28,17 +28,14 @@ export default {
   },
   methods: {
     async updateService() {
-      // Checks to see if there are any errors in validation
-      const isFormCorrect = await this.v$.$validate()
-      // If no errors found. isFormCorrect = True then the form is submitted
-      if (isFormCorrect) {
-        axios
-          .put(`${apiURL}/services/update/${this.id}`, this.service)
-          .then(() => {
-            alert('Service has been updated.')
-            this.$router.back()
-          })
-      }
+      // found issue was with the form validation with Prof. Lindner help 04/25/23 (9AM meeting)
+      //do the form validation with bootstrap
+      axios
+        .put(`${apiURL}/services/update/${this.id}`, this.service)
+        .then(() => {
+          alert('Service has been updated.')
+          this.$router.back()
+        })
     },
     //  Service  DELETE method
     deleteService() {
@@ -96,7 +93,7 @@ export default {
         />
       </label>
       <div class="button-group">
-        <!-- update button --> 
+        <!-- update button -->
         <!-- onclick="alert('Hello Update')" --was just testing the update click event -->
         <button
           @click="updateService"
