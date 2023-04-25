@@ -51,16 +51,16 @@ router.post('/', (req, res, next) => {
   })
 })
 
-// PUT update service
-//PUT Updating - editing a Service
+// PUT / Update service
+
 router.put('/update/:id', (req, res, next) => {
-  console.log(req.body)
-  services.findOneAndUpdate(req.params.id, req.body, (error, data) => {
+  //console.log(req.body)
+  services.findByIdAndUpdate(req.params.id, req.body, (error, data) => {
     if (error) {
-      console.log(error)
+      //console.log(error)
+      console.log(data)
       return next(error)
     } else {
-      console.log(data)
       res.json(data)
     }
   })

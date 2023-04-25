@@ -53,6 +53,11 @@ db.org.insertOne(
     name: "LocalOrg"
 });
 
+# install latest version of tailwind to avoid autoprefix error
+    npm install autoprefixer@latest --save-exact
+    or 
+    npm install autoprefixer@10.4.5 --save-exact
+
 <<<<<<< HEAD
 - David Bonilla - Dropped the class
 =======

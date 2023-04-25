@@ -3,6 +3,7 @@ import useVuelidate from '@vuelidate/core'
 import { required, alpha } from '@vuelidate/validators'
 import axios from 'axios'
 const apiURL = import.meta.env.VITE_ROOT_API
+
 export default {
   props: ['id'],
   setup() {
@@ -30,6 +31,7 @@ export default {
     async updateService() {
       // Checks to see if there are any errors in validation
       const isFormCorrect = await this.v$.$validate()
+      //console.log(this.service)
       // If no errors found. isFormCorrect = True then the form is submitted
       if (isFormCorrect) {
         axios
@@ -74,7 +76,7 @@ export default {
         <input
           class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           type="text"
-          v-model="service.name"
+          v-model="this.service.name"
           required
         />
       </label>
@@ -83,7 +85,7 @@ export default {
         <input
           class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           type="text"
-          v-model="service.description"
+          v-model="this.service.description"
         />
       </label>
       <label class="text-2xl font-bold">
@@ -103,7 +105,7 @@ export default {
           type="submit"
           class="bg-green-700 text-white rounded"
         >
-          Update
+          Update Service
         </button>
         <!-- delete button -->
         <button
@@ -111,7 +113,7 @@ export default {
           type="submit"
           class="bg-red-700 text-white rounded"
         >
-          Delete
+          Delete Service
         </button>
         <!---  Go Back button here so user can go back to list of services when they are done adding new one(s) instead of doing an auto reload -->
         <button
