@@ -36,12 +36,11 @@
                 <td class="p-2 text-left">
                   {{ service.status ? 'Yes' : 'No' }}
                 </td>
-              </tr> 
+              </tr>
             </tbody>
-
           </table>
         </div>
-        </div>
+      </div>
     </div>
     <!-- form button "Add New Service" to open addService.vue -->
     <div class="flex justify-between">
@@ -50,17 +49,17 @@
           <span
             style="position: relative; top: 6px"
             class="material-icons"
-            ></span
+          ></span
           >Add New Service
         </router-link>
       </button>
-    </div>      
+    </div>
   </main>
 </template>
 
 <script>
 //import axios
-import axios from "axios";
+import axios from 'axios'
 // backend endpoint API url
 const apiURL = import.meta.env.VITE_ROOT_API
 
@@ -68,24 +67,23 @@ export default {
   data() {
     return {
       service: {
-        name: "",
-        description: "",
-        status: "",
+        name: '',
+        description: '',
+        status: ''
       },
-      serviceData: [],
-
-    };
+      serviceData: []
+    }
   },
   /* once axios is mounted, automatically sends get request to pull all services */
   async mounted() {
     /* array to store response data */
-    this.serviceData = [];
+    this.serviceData = []
     await axios
       .get(`${apiURL}/services`)
       /* takes response from get request and compiles it into array */
       .then((resp) => {
-        this.serviceData = resp.data;
-      });
+        this.serviceData = resp.data
+      })
   },
   methods: {
     /* method to handle form submission*/
@@ -94,13 +92,13 @@ export default {
         /* sends POST request through axios to backend, alerts user of success, then reloads page through router */
         .post(apiURL, this.service)
         .then(() => {
-          alert("Service has been successfully added.");
+          alert('Service has been successfully added.')
           /* reloads window to show changes */
-          window.location.reload();
+          window.location.reload()
         })
         .catch((error) => {
-          console.log(error);
-        });
+          console.log(error)
+        })
     },
     // abstract get Services call
     getServices() {
@@ -110,7 +108,7 @@ export default {
     },
     editService(serviceID) {
       this.$router.push({ name: 'updateService', params: { id: serviceID } })
-    },
-  },
+    }
+  }
 }
 </script>
