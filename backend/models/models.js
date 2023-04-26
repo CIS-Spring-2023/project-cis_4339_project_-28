@@ -19,6 +19,19 @@ const orgDataSchema = new Schema(
   }
 )
 
+const UserSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+});
+
+
 // collection for clients
 const clientDataSchema = new Schema(
   {
@@ -158,6 +171,10 @@ const serviceDataSchema = new Schema(
 const clients = mongoose.model('client', clientDataSchema)
 const orgs = mongoose.model('org', orgDataSchema)
 const events = mongoose.model('event', eventDataSchema)
+
+const User = mongoose.model('User', UserSchema);
+//loging stuff
+
 //@wakindo
 // double check and uncomment when we reach the backend part of prj
 const services = mongoose.model('service', serviceDataSchema)
@@ -165,4 +182,8 @@ const services = mongoose.model('service', serviceDataSchema)
 // DO NOT FORGET to ADD "services" to module.exports below - DONE
 
 // package the models in an object to export
-module.exports = { clients, orgs, events, services }
+module.exports = { clients, orgs, events, services,  User }
+
+//adding login stuff 
+
+
