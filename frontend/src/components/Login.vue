@@ -45,62 +45,56 @@
 </template>
 
 <script>
+import axios from 'axios'
+const apiURL = import.meta.env.VITE_ROOT_API
+
 export default {
   data() {
     return {
       username: '',
       password: '',
       showSuccessMessage: false,
-      showFailMessage: false,
-
-      // hardcoded creds need to be replaced
-      hardcodedCredentials: {
-        editor: {
-          username: 'editor',
-          password: 'password'
-        },
-        viewer: {
-          username: 'viewer',
-          password: 'viewerpassword'
-        }
-      }
+      showFailMessage: false
     }
   },
   methods: {
     submitForm() {
-      //  call to backend would replace the hardcode stuff
-      const editorCreds = this.hardcodedCredentials.editor
-      const viewerCreds = this.hardcodedCredentials.viewer
+      // Call the login endpoint with the entered username and password
+      axios
+        .post(`${apiURL}/api/login`, {
+          username: this.username,
+          password: this.password
+        })
+        .then((res) => {
+          // If the credentials match show the success message
+          this.showSuccessMessage = true
+          this.showFailMessage = false
 
-// Check if the entered username and password match the hardcoded creds
-      if (
-        (this.username === editorCreds.username &&
-          this.password === editorCreds.password) ||
-        (this.username === viewerCreds.username &&
-          this.password === viewerCreds.password)
-      ) {
-        // If the credentials match show the success message
-        this.showSuccessMessage = true;
-        this.showFailMessage = false;
+          // Set the role in the Vuex store to be equal to the username
+          this.$store.commit('setRole', this.username)
 
-        // Update the Vuex store isAuthenticated state to true (user is logged in)
-        this.$store.commit('setIsAuthenticated', true);
+          // Update the Vuex store isAuthenticated state to true (user is logged in)
+          this.$store.commit('setIsAuthenticated', true)
 
-        // Update the Vuex store role state based on the matched credentials (editor or viewer)
-        this.$store.commit('setRole', this.username === editorCreds.username ? 'editor' : 'viewer');
-
-        // Navigate to the dashboard
-        this.$router.push('/');
-      } else {
-        // If the credentials don't match, show the failure message and hide the success message
-        this.showFailMessage = true;
-        this.showSuccessMessage = false;
-      }
+          // Navigate to the dashboard
+          this.$router.push('/')
+        })
+        .catch((err) => {
+          // If the credentials don't match, show the failure message and hide the success message
+          this.showFailMessage = true
+          this.showSuccessMessage = false
+          console.error(err)
+        })
     },
-  },
+    clearForm() {
+      this.username = ''
+      this.password = ''
+      this.showSuccessMessage = false
+      this.showFailMessage = false
+    }
+  }
 }
 </script>
-
 
 <style>
 label {
