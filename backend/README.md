@@ -13,9 +13,10 @@ Make sure you have a collection named 'org' in your database that contains at le
 
 Setup a .env file with the following variables: MONGO_URL, PORT and ORG
 
-    MONGO_URL= that is the Mongo URL connection string
-    PORT= e.g.3000
-    ORG= that is the orgid (as a string)
+   MONGO_URL = mongodb://127.0.0.1:27017/CommunityGardenSchema
+# We can use this variable to change the port number if we have another app already running on the default port 3000
+PORT = 3000
+ORG = LocalOrg
 
 ### Compiles and hot-reloads for development
 
