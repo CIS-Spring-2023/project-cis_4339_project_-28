@@ -45,7 +45,7 @@
       </div>
     </div>
     <!-- form button "Add New Service" to open addService.vue -->
-    <div class="flex justify-between">
+    <div class="flex justify-center mt-10">
       <button class="bg-red-700 text-white rounded" type="submit">
         <router-link to="/createService">
           <span
