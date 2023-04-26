@@ -64,8 +64,12 @@ export default {
     },
     // method to allow click through table to event details
     editEvent(eventID) {
-      this.$router.push({ name: 'eventdetails', params: { id: eventID } })
-    }
+  if (this.$store.state.isAuthenticated && this.$store.state.role === 'editor') {
+    this.$router.push({ name: 'eventdetails', params: { id: eventID } })
+  } else {
+    // Show an error message or redirect to a different page
+  }
+}
   }
 }
 </script>
@@ -74,11 +78,10 @@ export default {
   <main>
     <!-- first div after main -->
     <div>
-      <h1
-        class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
-      >
-        Welcome
+      <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">
+        Welcome, {{ $store.state.isAuthenticated ? $store.state.role.charAt(0).toUpperCase() + $store.state.role.slice(1) : '' }}!
       </h1>
+
       <br />
       <!--  div grid grid-cols-1- -->
       <div

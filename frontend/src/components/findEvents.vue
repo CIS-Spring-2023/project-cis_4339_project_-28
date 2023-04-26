@@ -53,8 +53,14 @@ export default {
       this.getEvents()
     },
     editEvent(eventID) {
-      this.$router.push({ name: 'eventdetails', params: { id: eventID } })
-    }
+  if (this.$store.state.isAuthenticated && this.$store.state.role === 'editor') {
+    this.$router.push({ name: 'eventdetails', params: { id: eventID } })
+  } else {
+    // Show an error message or redirect to a different page
+  }
+}
+
+,
   }
 }
 </script>

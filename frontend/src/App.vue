@@ -46,100 +46,101 @@ export default {
     <div id="_container" class="h-screen">
       <header class="w-full">
         <section class="text-center">
-          <img class="m-auto" src="@\assets\DanPersona.svg" />
-        </section>
+  <img class="m-auto" src="@\assets\DanPersona.svg" />
+  <h2 class="mt-4 mb-2 text-white welcome-message" v-if="$store.state.isAuthenticated">Welcome, {{ $store.state.role.charAt(0).toUpperCase() + $store.state.role.slice(1) }}!</h2>
+</section>
+
+
         <!-- Navigation bar section starts here -->
         <nav class="mt-10">
-          <ul class="flex flex-col gap-4">
-            <!-- david login page -->
-            <li v-if="!isAuthenticated">
-              <router-link to="/login">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >login</span
-                >
-                Login
-              </router-link>
-            </li>
-            <li v-if="isAuthenticated">
-              <router-link to="/">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >dashboard</span
-                >
-                Dashboard
-              </router-link>
-            </li>
-            <li v-if="isAuthenticated">
-              <router-link to="/findclient">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >search</span
-                >
-                Find Client
-              </router-link>
-            </li>
-            <li v-if="isAuthenticated">
-              <router-link to="/findevents">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >search</span
-                >
-                Find Event
-              </router-link>
-            </li>
+  <ul class="flex flex-col inline-flex">
+    <!-- david login page -->
+    <li v-if="!isAuthenticated">
+      <router-link to="/login">
+        <span
+          style="position: relative; top: 6px"
+          class="material-icons"
+          >login</span
+        >
+        Login
+      </router-link>
+    </li>
+    <li v-if="isAuthenticated">
+      <router-link to="/">
+        <span
+          style="position: relative; top: 6px"
+          class="material-icons"
+          >dashboard</span
+        >
+        Dashboard
+      </router-link>
+    </li>
+    <li v-if="isAuthenticated">
+      <router-link to="/findclient">
+        <span
+          style="position: relative; top: 6px"
+          class="material-icons"
+          >search</span
+        >
+        Find Client
+      </router-link>
+    </li>
+    <li v-if="isAuthenticated">
+      <router-link to="/findevents">
+        <span
+          style="position: relative; top: 6px"
+          class="material-icons"
+          >search</span
+        >
+        Find Event
+      </router-link>
+    </li>
+    <li v-if="role === 'editor'">
+      <router-link to="/intakeform">
+        <span
+          style="position: relative; top: 6px"
+          class="material-icons"
+          >people</span
+        >
+        Client Intake Form
+      </router-link>
+    </li>
+    <li v-if="role === 'editor'">
+      <router-link to="/eventform">
+        <span
+          style="position: relative; top: 6px"
+          class="material-icons"
+          >event</span
+        >
+        Create Event
+      </router-link>
+    </li>
+    <li v-if="role === 'editor'">
+      <router-link to="/listServices">
+        <span
+          style="position: relative; top: 6px"
+          class="material-icons"
+          >settings</span
+        >
+        Services
+      </router-link>
+    </li>
+    <li v-if="isAuthenticated">
+      <button class="logout-button" @click="logout">
+        <span
+          style="position: relative; top: 6px"
+          class="material-icons"
+          >logout</span
+        >
+        Logout
+      </button>
+    </li>
+  </ul>
+</nav>
 
-            <div v-if="role === 'editor'">
-              <li>
-                <router-link to="/intakeform">
-                  <span
-                    style="position: relative; top: 6px"
-                    class="material-icons"
-                    >people</span
-                  >
-                  Client Intake Form
-                </router-link>
-              </li>
-              <li>
-                <router-link to="/eventform">
-                  <span
-                    style="position: relative; top: 6px"
-                    class="material-icons"
-                    >event</span
-                  >
-                  Create Event
-                </router-link>
-              </li>
-              <li>
-                <!-- <router-link to="/listServices"> -->
-                <router-link to="/listServices">
-                  <span
-                    style="position: relative; top: 6px"
-                    class="material-icons"
-                    >settings</span
-                  >
-                  Services
-                </router-link>
-              </li>
-            </div>
 
-            <!-- david logout page -->
-            <li v-if="isAuthenticated">
-              <button @click="logout">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >logout</span
-                >
-                Logout
-              </button>
-            </li>
-          </ul>
-        </nav>
+
+
       </header>
     </div>
     <div class="grow w-4/5">
@@ -156,9 +157,16 @@ export default {
   </main>
 </template>
 <style>
+.logout-button {
+  padding: 0;
+  margin: 0;
+}
 #_container {
   background-color: #c8102e;
   color: white;
   padding: 18px;
+}
+.welcome-message {
+  margin-bottom: 8px;
 }
 </style>
