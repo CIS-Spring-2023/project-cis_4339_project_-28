@@ -18,8 +18,6 @@ const store = createStore({
     logout({ commit }) {
       commit('setIsAuthenticated', false);
       commit('setRole', '');
-      // If you have a token stored, remove it here
-      // localStorage.removeItem('token');
     },
   },
   plugins: [createPersistedState()],
