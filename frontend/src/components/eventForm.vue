@@ -10,7 +10,7 @@ export default {
   },
   data() {
     return {
-      // removed unnecessary extra array to track services
+      activeServices: [],
       event: {
         name: '',
         services: [],
@@ -26,13 +26,9 @@ export default {
       }
     }
   },
-  computed: {
-  activeServices() {
-    const allServices = JSON.parse(localStorage.getItem('createdServices')) || [];
-    return allServices.filter(service => service.active);
-  }
-},
-
+  async mounted() {
+    await this.fetchActiveServices();
+  },
   methods: {
     async handleSubmitForm() {
       // Checks to see if there are any errors in validation
@@ -49,9 +45,16 @@ export default {
             console.log(error)
           })
       }
+    },
+    async fetchActiveServices() {
+      try {
+        const response = await axios.get(`${apiURL}/services`);
+        this.activeServices = response.data.filter(service => service.status);
+      } catch (error) {
+        console.error('Error fetching active services:', error);
+      }
     }
   },
-  // sets validations for the various data properties
   validations() {
     return {
       event: {
@@ -62,6 +65,7 @@ export default {
   }
 }
 </script>
+
 <template>
   <main>
     <div>
@@ -142,20 +146,20 @@ export default {
           <div></div>
           <!-- form field -->
           <div class="flex flex-col grid-cols-3">
-          <label>Services Offered at Event</label>
-          <div v-for="(service, index) in activeServices" :key="index">
-            <label class="inline-flex items-center">
-              <input
-                type="checkbox"
+            <label>Services Offered at Event</label>
+            <div v-for="(service, index) in activeServices" :key="index">
+              <label class="inline-flex items-center">
+                <input
+                  type="checkbox"
                   :id="`service-${index}`"
-                :value="service.name"
-                v-model="event.services"
-                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
-              />
-              <span class="ml-2">{{ service.name }}</span>
-            </label>
+                  :value="service.name"
+                  v-model="event.services"
+                  class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+                <span class="ml-2">{{ service.name }}</span>
+              </label>
+            </div>
           </div>
-        </div>
         </div>
 
         <!-- grid container -->
