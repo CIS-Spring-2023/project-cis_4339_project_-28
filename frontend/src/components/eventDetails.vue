@@ -31,14 +31,16 @@ export default {
       activeServices: [] // empty array to be populated with available services
     }
   },
+
+
   async created() {
-    // Retrieve the list of active services from the API
-    try {
-      const response = await axios.get(`${apiURL}/services`);
-      this.activeServices = response.data.filter(service => service.status);
-    } catch (error) {
-      console.error('Error fetching active services:', error);
-    }
+  // Retrieve the list of active services from the API
+  try {
+    const response = await axios.get(`${apiURL}/services`);
+    this.activeServices = response.data.filter(service => service.status === "true");
+  } catch (error) {
+    console.error('Error fetching active services:', error);
+  }
 
     // Retrieve the event details and attendees from the API
     try {

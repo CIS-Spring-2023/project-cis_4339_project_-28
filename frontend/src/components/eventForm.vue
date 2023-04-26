@@ -27,8 +27,10 @@ export default {
     }
   },
   async mounted() {
-    await this.fetchActiveServices();
-  },
+  await this.fetchActiveServices();
+},
+
+
   methods: {
     async handleSubmitForm() {
       // Checks to see if there are any errors in validation
@@ -47,13 +49,17 @@ export default {
       }
     },
     async fetchActiveServices() {
-      try {
-        const response = await axios.get(`${apiURL}/services`);
-        this.activeServices = response.data.filter(service => service.status);
-      } catch (error) {
-        console.error('Error fetching active services:', error);
-      }
-    }
+  try {
+    const response = await axios.get(`${apiURL}/services`);
+    console.log(response); // add this line to debug
+    this.activeServices = response.data.filter(service => service.status === 'true');
+    console.log(this.activeServices); // add this line to debug
+  } catch (error) {
+    console.error('Error fetching active services:', error);
+  }
+}
+
+
   },
   validations() {
     return {
@@ -65,6 +71,7 @@ export default {
   }
 }
 </script>
+
 
 <template>
   <main>
