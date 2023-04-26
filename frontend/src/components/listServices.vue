@@ -36,7 +36,9 @@
                 <td class="p-2 text-left">{{ service.name }}</td>
                 <td class="p-2 text-left">{{ service.description }}</td>
                 <td class="p-2 text-left">
-                  {{ service.status ? 'Yes' : 'No' }}
+                  {{ service.status === 'true' ? 'Yes' : 'No' }}
+
+
                 </td>
               </tr>
             </tbody>

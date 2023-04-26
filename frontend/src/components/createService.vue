@@ -11,31 +11,36 @@ export default {
   data() {
     return {
       service: {
-        name: "",
-        description: "",
-        status: "true", //default value - no sense added an inactive service
+        name: '',
+        description: '',
+        status: true //default value - no sense added an inactive service
       },
-      serviceData: [],
-
+      serviceData: []
     }
   },
   methods: {
     async handleSubmitForm() {
-      // Checks to see if there are any errors in validation
-      const isFormCorrect = await this.v$.$validate()
-      // If no errors found. isFormCorrect = True then the form is submitted
-      if (isFormCorrect) {
-        axios
-          //post the new service
-          .post(`${apiURL}/services`, this.service)
-          .then(() => {
-            alert('Service has been added.') // Confirm service added to DB
-            //Go back to the list of services
-            this.$router.push({ name: 'listservices' })
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+      // Validate the form
+      const isValid = await this.v$.$validate()
+
+      // If the form is valid, post the new service to the API
+      if (isValid) {
+        // Create a new object with the correct status value
+        const newService = {
+          name: this.service.name,
+          description: this.service.description,
+          status: this.service.status
+        }
+
+        try {
+          // Post the new service to the API
+          await axios.post(`${apiURL}/services`, newService)
+          alert('Service has been added.')
+          // Go back to the list of services
+          this.$router.push({ name: 'listservices' })
+        } catch (error) {
+          console.error(error)
+        }
       }
     }
   },
@@ -45,12 +50,22 @@ export default {
       service: {
         name: { required },
         description: {},
-        status: {required} //required as it does not make sense to add a service that will not be "Active"
+        status: { required } //required as it does not make sense to add a service that will not be "Active"
+      }
+    }
+  },
+  watch: {
+    'service.status': function(value) {
+      if (value === false || value === 'false') {
+        this.service.status = false
+      } else {
+        this.service.status = true
       }
     }
   }
 }
 </script>
+
 
 <template>
   <div class="create-service">
@@ -62,7 +77,7 @@ export default {
     </h1>
     <div class="px-10 pt-10"></div>
     <!-- form for the data name,description, status -->
-    <form  @submit.prevent="handleSubmitForm">
+    <form @submit.prevent="handleSubmitForm">
       <label class="text-2xl font-bold">
         Service Name:
         <input
@@ -84,7 +99,6 @@ export default {
         Active Status:
         <input
           class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
-          notchecked
           type="checkbox"
           v-model="service.status"
         />
@@ -93,7 +107,8 @@ export default {
         <button
           class="submit-button bg-red-700 text-white rounded"
           type="submit"
-        > Save
+        >
+          Save
         </button>
         <!--- @wakindo: Guys, I just added a Go Back button here so user can go back to list of services when they are done adding new one(s) instead of doing an auto reload -->
         <button
@@ -101,7 +116,7 @@ export default {
           class="border border-red-700 bg-white text-red-700 rounded"
           @click="$router.back()"
         >
-        Go back
+          Go back
         </button>
         <button class="clear-button" type="reset" @click="clearForm">
           Clear
@@ -111,8 +126,6 @@ export default {
     </form>
   </div>
 </template>
-
-
 
 <style>
 label {
