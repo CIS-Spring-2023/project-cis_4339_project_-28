@@ -2,11 +2,14 @@
 import { DateTime } from 'luxon'
 import axios from 'axios'
 import AttendanceChart from './barChart.vue'
+//importing client chart
+import ClientChart from './clientChart.vue'
 const apiURL = import.meta.env.VITE_ROOT_API
 
 export default {
   components: {
-    AttendanceChart
+    AttendanceChart,
+    ClientChart
   },
   data() {
     return {
@@ -152,11 +155,11 @@ export default {
           <br />
           <!-- @wakindo: Clients Chart stuff starts here   -->
           <div>
-            <clientChart
+            <ClientChart
               v-if="!loading && !error"
               :label="labels"
               :chart-data="chartData"
-            ></clientChart>
+            ></ClientChart>
           </div>
           <!--  div flex flex-col- -->
         </div>

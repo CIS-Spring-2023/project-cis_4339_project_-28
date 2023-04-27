@@ -1,13 +1,7 @@
 <script>
 import axios from 'axios'
-//@wakindo: importing client chart vue
-import clientChart from './clientBarChart.vue'
 const apiURL = import.meta.env.VITE_ROOT_API
 export default {
-  //@wakindo: add clientChart components here
-  components: {
-    clientChart
-  },
   data() {
     return {
       queryData: [],
