@@ -13,11 +13,13 @@ Make sure you have a collection named 'org' in your database that contains at le
 
 Setup a .env file with the following variables: MONGO_URL, PORT and ORG
 
-   MONGO_URL = mongodb://127.0.0.1:27017/CommunityGardenSchema
-# We can use this variable to change the port number if we have another app already running on the default port 3000
-PORT = 3000
-ORG = LocalOrg
+   MONGO_URL = 'STRING HERE'
+   PORT = 3000
+   ORG = '1'
 
+Mongo URL linked seperately in blackboard submission.
+
+We can use this variable to change the port number if we have another app already running on the default port 3000
 ### Compiles and hot-reloads for development
 
     npm start
