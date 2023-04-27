@@ -18,7 +18,7 @@ export default {
       e.replace(/[\d\.]+\)$/g, '1)')
     )
     await new Chart(this.$refs.clientChart, {
-      type: 'bar',
+      type: 'doughnut',
       data: {
         labels: this.label,
         datasets: [
@@ -31,21 +31,9 @@ export default {
         ]
       },
       options: {
-        scales: {
-          y: {
-            ticks: {
-              stepSize: 1
-            }
-          },
-          x: {
-            gridLines: {
-              display: false
-            }
-          }
-        },
         plugins: {
           legend: {
-            display: false
+            display: true
           }
         },
         responsive: true,
