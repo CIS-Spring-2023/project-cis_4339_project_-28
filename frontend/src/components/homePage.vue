@@ -16,12 +16,16 @@ export default {
       recentEvents: [],
       labels: [],
       chartData: [],
+      clientChartData: [], // array of client data
       loading: false,
-      error: null
+      error: null,
+      recentClients: [] //array for recent clients added to DB
     }
   },
   mounted() {
     this.getAttendanceData()
+    //,
+   // this.getClientData()
   },
   methods: {
     async getAttendanceData() {
@@ -36,6 +40,38 @@ export default {
         this.chartData = response.data.map((item) => item.attendees.length)
       } catch (err) {
         if (err.response) {
+          // client received an error response (5xx, 4xx)
+          this.error = {
+            title: 'Server Response',
+            message: err.message
+          }
+        } else if (err.request) {
+          // client never received a response, or request never left
+          this.error = {
+            title: 'Unable to Reach Server',
+            message: err.message
+          }
+        } else {
+          // There's probably an error in your code
+          this.error = {
+            title: 'Application Error',
+            message: err.message
+          }
+        }
+      }
+      this.loading = false
+    },
+    //Client chart data
+    async getClientData() {
+      try {
+        this.error = null
+        this.loading = true
+        const resp = await axios.get(`${apiURL}/clients`)
+        this.recentClients = resp.data
+        this.labels = resp.data.map((item) => `${item.address.Zip}`)
+        this.clientChartData = resp.data.map((item) => item.clients.length)
+      } catch (err) {
+        if (err.resp) {
           // client received an error response (5xx, 4xx)
           this.error = {
             title: 'Server Response',
