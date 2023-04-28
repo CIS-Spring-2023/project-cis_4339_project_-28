@@ -18,6 +18,7 @@ export default {
       e.replace(/[\d\.]+\)$/g, '1)')
     )
     await new Chart(this.$refs.clientChart, {
+      //setting up the chart type to be doughnut - just change it to pie if you want a pie chart
       type: 'doughnut',
       data: {
         labels: this.label,
