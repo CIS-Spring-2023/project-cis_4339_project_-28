@@ -29,6 +29,10 @@ Hugo Di Francesco, Clifford Gurney, Philip Kirkbride and Maya
 Shavin, Packt Publishing (November, 2020)
 3) https://www.geeksforgeeks.org/
 4) https://v2.vuejs.org/
+5) https://www.mongodb.com/developer/languages/python/code-examples/
+6) https://www.geeksforgeeks.org/how-to-implement-bar-and-pie-charts-using-chart-js/
+7) https://www.w3schools.com/ai/ai_chartjs.asp
+8) https://stackoverflow.com/
 
 
 
@@ -49,8 +53,8 @@ NB: Make sure I am on the right folder before executing:
 
 #### DO NOT FORGET TO ADD AT LEAST ONE ORG(with default name set on .env file) TO DB TO PREVENT ERROR ON APP.VUE
 db.org.insertOne(
-{
-    name: "LocalOrg"
+{   id: "org"
+    name: "Community Garden"
 });
 
 # install latest version of tailwind to avoid autoprefix error
