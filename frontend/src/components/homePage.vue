@@ -23,9 +23,7 @@ export default {
     }
   },
   mounted() {
-    this.getAttendanceData()
-    //,
-   // this.getClientData()
+    this.getAttendanceData(), this.getClientData()
   },
   methods: {
     async getAttendanceData() {
@@ -66,10 +64,11 @@ export default {
       try {
         this.error = null
         this.loading = true
-        const resp = await axios.get(`${apiURL}/clients`)
+        const resp = await axios.get(`${apiURL}/clients/clientsByZip`)
         this.recentClients = resp.data
-        this.labels = resp.data.map((item) => `${item.address.Zip}`)
-        this.clientChartData = resp.data.map((item) => item.clients.length)
+        console.log(resp.data)
+        this.labels = resp.data.map((item) => `${item._id}`)
+        this.clientChartData = resp.data.map((item) => item.Counter)
       } catch (err) {
         if (err.resp) {
           // client received an error response (5xx, 4xx)

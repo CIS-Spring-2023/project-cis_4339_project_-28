@@ -20,6 +20,20 @@ router.get('/', (req, res, next) => {
     .limit(10)
 })
 
+// group clients by zipcode
+router.get('/clientsByZip', async (req, res) => {
+  try {
+    //using the $group aggregation to group by zipcode
+    const clientsByZipcode = await clients.aggregate([
+      { $group: { _id: '$address.zip', Counter: { $sum: 1 } } }
+    ])
+    res.status(200).json(clientsByZipcode)
+  } catch {
+    //console.log(error.message)
+    res.status(500).json({ message: 'Error retrieving clients by zipcode' })
+  }
+})
+
 // GET single client by ID
 router.get('/id/:id', (req, res, next) => {
   // use findOne instead of find to not return array
