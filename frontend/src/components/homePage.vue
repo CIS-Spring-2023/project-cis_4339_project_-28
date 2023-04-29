@@ -15,6 +15,7 @@ export default {
     return {
       recentEvents: [],
       labels: [],
+      clabels:[],
       chartData: [],
       clientChartData: [], // array of client data
       loading: false,
@@ -67,7 +68,7 @@ export default {
         const resp = await axios.get(`${apiURL}/clients/clientsByZip`)
         this.recentClients = resp.data
         console.log(resp.data)
-        this.labels = resp.data.map((item) => `${item._id}`)
+        this.clabels = resp.data.map((item) => `${item._id}`)
         this.clientChartData = resp.data.map((item) => item.Counter)
       } catch (err) {
         if (err.resp) {
@@ -192,8 +193,8 @@ export default {
           <div>
             <ClientChart
               v-if="!loading && !error"
-              :label="labels"
-              :chart-data="chartData"
+              :label="clabels"
+              :chart-data="clientChartData"
             ></ClientChart>
           </div>
           <!--  div flex flex-col- -->
