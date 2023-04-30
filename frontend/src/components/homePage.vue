@@ -20,12 +20,16 @@ export default {
       error: null,
       clientChartLabels:[], //array for client chart labels for each zipcode
       clientChartData: [], // array of client data for each zipcode counter
-      recentClients: [] //array for recent clients added to DB
+      clientChartLoading: false
     }
   },
   mounted() {
-    this.getAttendanceData(), this.getClientData()
+    this.getAttendanceData(), 
+    this.getClientData()
   },
+  // beforeUpdate() {
+  //   this.getClientData()
+  // },
   methods: {
     async getAttendanceData() {
       try {
@@ -64,36 +68,18 @@ export default {
     async getClientData() {
       try {
         this.error = null
-        this.loading = true
+        this.clientChartLoading = true
         const resp = await axios.get(`${apiURL}/clients/clientsByZip`)
-        //this.recentClients = resp.data
         //console.log(resp.data)
         // chart labels, i.e. zipcode 77074
         this.clientChartLabels = resp.data.map((item) => `${item._id}`)
         // zipcounter i.e. 2 clients in 77074 
         this.clientChartData = resp.data.map((item) => item.Counter)
       } catch (err) {
-        if (err.resp) {
-          // client received an error response (5xx, 4xx)
-          this.error = {
-            title: 'Server Response',
-            message: err.message
-          }
-        } else if (err.request) {
-          // client never received a response, or request never left
-          this.error = {
-            title: 'Unable to Reach Server',
-            message: err.message
-          }
-        } else {
-          // There's probably an error in your code
-          this.error = {
-            title: 'Application Error',
-            message: err.message
-          }
-        }
+        console.log(err.message)
+         
       }
-      this.loading = false
+      this.clientChartLoading = false
     },
     formattedDate(datetimeDB) {
       const dt = DateTime.fromISO(datetimeDB, {
@@ -183,7 +169,6 @@ export default {
           </div>
           <!-- end div attendance chart -->
 
-          <br />
           <!-- Chart of Clients by Zip Code -->
           <div class="mt-40">
             <h2 class="italic font-bold text-center">
