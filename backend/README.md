@@ -27,3 +27,6 @@ We can use this variable to change the port number if we have another app alread
 ## Postman Documentation
 
 Can be found at <https://documenter.getpostman.com/view/23133138/2s83mdJiqh>
+
+## ## Postman Documentation for project Add-ons per sprint 2 and 3 requirements of our Team (#28)
+  Can be found at   https://documenter.getpostman.com/view/19780120/2s93eSaG4K
