@@ -57,19 +57,25 @@ db.org.insertOne(
     name: "Community Garden"
 });
 
-# install latest version of tailwind to avoid autoprefix error
-    npm install autoprefixer@latest --save-exact
-    or 
-    npm install autoprefixer@10.4.5 --save-exact
+Login Info:
+#==================
+*** Editor
+#==================
+Username: editor
 
-- David Bonilla - Dropped the class
+Password: password
+
+ 
+#=================
+*** Viewer:
+#=================
+Username: viewer
+
+Password: viewerpassword
 
 
 
-**Editor**
-editor
-password
+NB- Third member, David Bonilla  dropped the class
 
-**Viewer**
-viewer
-viewerpassword
+
+
